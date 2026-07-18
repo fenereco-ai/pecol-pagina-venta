@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descifrador de Ladridos | PECOL</title>
+<style>
+  :root{
+    --bg:#fdfaf5;
+    --ink:#2b2420;
+    --brand:#c9622f;
+    --brand-dark:#a44b1f;
+    --accent:#4a7c59;
+    --card:#ffffff;
+    --muted:#6b6058;
+    --line:#ece3d8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px;}
+  header.hero{
+    background: linear-gradient(180deg, #fff3e9 0%, var(--bg) 100%);
+    padding:56px 0 40px;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+  }
+  .tag{
+    display:inline-block;
+    background:var(--accent);
+    color:#fff;
+    font-size:13px;
+    font-weight:600;
+    padding:6px 14px;
+    border-radius:999px;
+    margin-bottom:18px;
+    letter-spacing:.3px;
+  }
+  h1{
+    font-size:2.4rem;
+    margin:0 0 14px;
+    color:var(--brand-dark);
+    line-height:1.15;
+  }
+  .subhead{
+    font-size:1.15rem;
+    color:var(--muted);
+    max-width:520px;
+    margin:0 auto 24px;
+  }
+  .price{
+    font-size:1.1rem;
+    margin:20px 0 26px;
+  }
+  .price .old{
+    text-decoration:line-through;
+    color:var(--muted);
+    margin-right:10px;
+  }
+  .price .new{
+    font-size:1.8rem;
+    font-weight:800;
+    color:var(--brand);
+  }
+  .cta{
+    display:inline-block;
+    background:var(--brand);
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:1.05rem;
+    padding:16px 32px;
+    border-radius:10px;
+    box-shadow:0 6px 16px rgba(201,98,47,.28);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .cta:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(201,98,47,.35);}
+  section{padding:44px 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  h2{
+    font-size:1.5rem;
+    color:var(--brand-dark);
+    margin-bottom:18px;
+  }
+  ul.check{list-style:none;padding:0;margin:0;}
+  ul.check li{
+    padding:10px 0 10px 32px;
+    position:relative;
+    color:var(--ink);
+    border-bottom:1px dashed var(--line);
+  }
+  ul.check li:last-child{border-bottom:none;}
+  ul.check li::before{
+    content:"✓";
+    position:absolute;
+    left:0;
+    top:10px;
+    color:var(--accent);
+    font-weight:800;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:24px;
+    margin-top:18px;
+  }
+  .steps{counter-reset:step;list-style:none;padding:0;margin:0;}
+  .steps li{
+    counter-increment:step;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:18px 18px 18px 56px;
+    margin-bottom:14px;
+    position:relative;
+  }
+  .steps li::before{
+    content:counter(step);
+    position:absolute;
+    left:16px;
+    top:18px;
+    background:var(--brand);
+    color:#fff;
+    width:26px;height:26px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;
+    font-size:.9rem;
+  }
+  .steps strong{display:block;color:var(--brand-dark);margin-bottom:4px;}
+  .anchor{
+    background:#fff3e9;
+    border-radius:14px;
+    padding:26px;
+    text-align:center;
+    font-size:1.05rem;
+  }
+  .anchor strong{color:var(--brand-dark);}
+  .guarantee{
+    background:var(--accent);
+    color:#fff;
+    border-radius:14px;
+    padding:26px;
+    text-align:center;
+  }
+  .guarantee h2{color:#fff;}
+  .faq-item{margin-bottom:20px;}
+  .faq-item p.q{font-weight:700;margin:0 0 6px;color:var(--brand-dark);}
+  .faq-item p.a{margin:0;color:var(--muted);}
+  .bonus{
+    background:#fff9f0;
+    border:1px dashed var(--brand);
+    border-radius:14px;
+    padding:20px;
+    text-align:center;
+  }
+  .final-cta{
+    text-align:center;
+    padding:56px 0 60px;
+  }
+  .final-cta h2{font-size:1.6rem;}
+  footer{
+    text-align:center;
+    padding:30px 0 50px;
+    color:var(--muted);
+    font-size:.85rem;
+  }
+  .pending{
+    font-size:.8rem;
+    color:var(--muted);
+    font-style:italic;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">PECOL · Programa de Educación Canina Online</span>
+    <h1>Descifrador de Ladridos</h1>
+    <p class="subhead">Dejá de vivir con miedo a que se queje el vecino. Mini-app que identifica por qué ladra tu perro y te entrega la ruta exacta para frenarlo esta semana.</p>
+    <div class="price">
+      <span class="old">USD 19</span>
+      <span class="new">USD 7</span>
+    </div>
+    <a class="cta" href="#comprar">Quiero saber por qué ladra mi perro</a>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>¿Esto es para vos?</h2>
+    <ul class="check">
+      <li>Los vecinos ya te dijeron algo por los ladridos, o tenés miedo de que lo hagan.</li>
+      <li>Probaste videos de YouTube, consejos de grupos de Facebook, o de todo un poco, y nada te duró.</li>
+      <li>Tu perro ladra y no sabés si es maldad, miedo, aburrimiento, o otra cosa.</li>
+      <li>Querés una respuesta hoy, no otro curso de 10 horas para ver "cuando tengas tiempo".</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>¿Por qué nada te funcionó hasta ahora?</h2>
+    <p>Le gritaste "basta". Lo ignoraste. Le compraste un juguete nuevo. Nada duró más de dos días.</p>
+    <p>No es que hiciste algo mal. Es que nadie te dijo la parte que falta: no todos los ladridos son iguales, y cada uno necesita algo distinto.</p>
+    <p>Un perro que ladra porque le da miedo quedarse solo necesita algo completamente distinto a uno que ladra porque ve gente pasar por la calle. Si le aplicás la misma solución a los dos, a uno le va a servir y al otro no le va a cambiar nada. Ahí está el motivo real de por qué nada de lo que probaste funcionó hasta ahora.</p>
+    <p><strong>El Descifrador de Ladridos arranca por identificar cuál de los cuatro es el tuyo. Recién ahí te da la ruta que corresponde.</strong></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Cómo funciona: 3 pasos</h2>
+    <ol class="steps">
+      <li><strong>Diagnóstico (2 minutos)</strong>Respondés 4 preguntas simples sobre cuándo y cómo ladra tu perro.</li>
+      <li><strong>Tu ruta personalizada</strong>La app identifica el tipo de ladrido (ansiedad, territorial, aburrimiento o excitación) y te entrega la ruta de 7 días que corresponde a ese tipo, con un ejercicio concreto para cada día.</li>
+      <li><strong>Seguimiento</strong>Marcás un checklist diario. Si al cuarto día el progreso es bajo, la app te avisa y te sugiere el ajuste.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="comprar">
+  <div class="wrap" style="text-align:center;">
+    <a class="cta" href="#">Quiero saber por qué ladra mi perro</a>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="bonus">
+      <strong style="color:var(--brand-dark);">Bonus</strong>
+      <p style="margin:8px 0 0;">Pack de 3 Rutas (Ladridos + Jale de Correa + Destroza), los 3 juntos por <strong>USD 17</strong> en vez de pagarlos por separado.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Testimonios</h2>
+    <p class="pending">Pendiente. Se completa con testimonios reales de tutores que ya hicieron parte del cursado de PECOL. No se usan testimonios inventados.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="anchor">
+      Una sola sesión con un adiestrador presencial en Argentina cuesta entre <strong>USD 50 y 200</strong>.<br>
+      El Descifrador de Ladridos cuesta <strong>USD 7</strong> y lo tenés en tu celular en menos de 2 minutos.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="guarantee">
+      <h2>Garantía de 7 días</h2>
+      <p>Si hacés la ruta completa y no ves ningún cambio, te devolvemos la plata. Sin preguntas incómodas.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Preguntas frecuentes</h2>
+
+    <div class="faq-item">
+      <p class="q">¿Y si mi perro es distinto a todos los demás?</p>
+      <p class="a">Por eso el primer paso es el diagnóstico, no un protocolo genérico. La app identifica tu caso puntual antes de darte la ruta.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="q">Ya compré un curso antes y fue plata tirada. ¿Por qué esto sería distinto?</p>
+      <p class="a">Porque no es un curso de horas para ver. Es un diagnóstico de 2 minutos y una ruta concreta para esta semana.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="q">¿Funciona para perros adultos o solo para cachorros?</p>
+      <p class="a">Funciona para cualquier edad. Lo que cambia no es la edad, es el tipo de ladrido que identifica el diagnóstico.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="q">¿Puedo pagar sin tarjeta de crédito internacional?</p>
+      <p class="a pending">Dato pendiente: confirmar qué medios de pago se van a habilitar, para responder esto con precisión.</p>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Quiero que mi perro deje de ladrar hoy</h2>
+    <a class="cta" href="#">Empezar ahora</a>
+  </div>
+</section>
+
+<footer>
+  PECOL · Programa de Educación Canina Online
+</footer>
+
+</body>
+</html>

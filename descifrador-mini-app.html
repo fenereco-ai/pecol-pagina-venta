@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descifrador de Ladridos - Tu diagnóstico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde-oscuro:#1F3D33;
+    --verde:#2E5B4C;
+    --verde-claro:#3E6B5A;
+    --dorado:#E0A526;
+    --dorado-oscuro:#C4890F;
+    --texto:#26312D;
+    --texto-suave:#5B6862;
+    --blanco:#FFFFFF;
+    --borde:#DDE6E1;
+    --rojo-alerta:#B23A2E;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Nunito',sans-serif;
+    color:var(--texto);
+    background:#F7F9F8;
+    line-height:1.55;
+  }
+  h1,h2,h3{font-family:'Poppins',sans-serif;color:var(--verde-oscuro);}
+  .wrap{max-width:640px;margin:0 auto;padding:28px 20px 60px;}
+  header.top{
+    background:linear-gradient(160deg, var(--verde-oscuro) 0%, var(--verde) 60%, var(--verde-claro) 100%);
+    color:#fff;
+    padding:22px 20px;
+    text-align:center;
+  }
+  header.top .logo{font-family:'Poppins',sans-serif;font-weight:800;font-size:20px;letter-spacing:0.5px;}
+  header.top .sub{font-size:13px;opacity:0.85;margin-top:2px;}
+
+  .progress{display:flex;gap:6px;margin:0 0 26px;}
+  .progress .seg{flex:1;height:5px;border-radius:3px;background:var(--borde);}
+  .progress .seg.done{background:var(--dorado);}
+
+  .card{
+    background:var(--blanco);
+    border:1px solid var(--borde);
+    border-radius:14px;
+    padding:24px 22px;
+    margin-bottom:18px;
+  }
+  .card h2{font-size:21px;margin:0 0 12px;}
+  .card p{margin:0 0 14px;font-size:15.5px;}
+  .eyebrow{
+    font-family:'Poppins',sans-serif;
+    font-size:12px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.6px;
+    color:var(--dorado-oscuro);
+    margin-bottom:8px;
+  }
+
+  label{display:block;font-weight:700;font-size:14.5px;margin:16px 0 6px;color:var(--verde-oscuro);}
+  input[type=text],input[type=email]{
+    width:100%;
+    padding:12px 14px;
+    border:1.5px solid var(--borde);
+    border-radius:9px;
+    font-family:'Nunito',sans-serif;
+    font-size:15px;
+    color:var(--texto);
+  }
+  input:focus{outline:none;border-color:var(--verde);}
+
+  .radio-row{display:flex;gap:10px;margin-top:4px;}
+  .radio-row label.opt{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    border:1.5px solid var(--borde);
+    border-radius:9px;
+    padding:10px;
+    margin:0;
+    font-weight:600;
+    color:var(--texto);
+    cursor:pointer;
+    font-size:14.5px;
+  }
+  .radio-row input{accent-color:var(--verde);}
+  .radio-row label.opt.checked{border-color:var(--verde);background:#F2F6F4;color:var(--verde-oscuro);}
+
+  .choice{
+    display:block;
+    width:100%;
+    text-align:left;
+    background:var(--blanco);
+    border:1.5px solid var(--borde);
+    border-radius:11px;
+    padding:14px 16px;
+    margin-bottom:10px;
+    font-family:'Nunito',sans-serif;
+    font-size:15px;
+    color:var(--texto);
+    cursor:pointer;
+    transition:border-color .15s, background .15s;
+  }
+  .choice:hover{border-color:var(--verde-claro);}
+  .choice.selected{border-color:var(--verde);background:#F2F6F4;font-weight:700;color:var(--verde-oscuro);}
+  .sub-check{
+    margin:6px 0 0 14px;
+    font-size:13.5px;
+    color:var(--texto-suave);
+    display:flex;
+    align-items:flex-start;
+    gap:6px;
+  }
+  .sub-check input{margin-top:3px;accent-color:var(--dorado-oscuro);}
+
+  .btn{
+    display:inline-block;
+    width:100%;
+    text-align:center;
+    background:var(--dorado);
+    color:var(--verde-oscuro);
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:15.5px;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    margin-top:6px;
+    text-decoration:none;
+  }
+  .btn:hover{background:var(--dorado-oscuro);color:#fff;}
+  .btn:disabled{opacity:0.45;cursor:not-allowed;}
+  .btn.secundario{
+    background:transparent;
+    color:var(--verde);
+    border:1.5px solid var(--verde);
+  }
+  .btn.secundario:hover{background:#F2F6F4;color:var(--verde-oscuro);}
+  .btn.whatsapp{background:#25D366;color:#fff;}
+  .btn.whatsapp:hover{background:#1DA851;}
+
+  .back-link{
+    display:inline-block;
+    margin-bottom:14px;
+    font-size:13.5px;
+    color:var(--texto-suave);
+    cursor:pointer;
+    text-decoration:underline;
+  }
+
+  .diag-box{
+    background:linear-gradient(135deg, var(--verde-oscuro), var(--verde));
+    color:#fff;
+    border-radius:14px;
+    padding:26px 22px;
+    margin-bottom:18px;
+  }
+  .diag-box h2{color:#fff;font-size:23px;margin-bottom:10px;}
+  .diag-box p{font-size:15px;opacity:0.95;margin-bottom:12px;}
+  .diag-box p:last-child{margin-bottom:0;}
+  .diag-box strong{color:var(--dorado);}
+
+  .nota-box{
+    background:#FBF3E1;
+    border:1px solid #EAD9A8;
+    border-radius:10px;
+    padding:14px 16px;
+    font-size:14px;
+    color:#6B5316;
+    margin:14px 0;
+  }
+
+  .day-card{
+    border:1.5px solid var(--borde);
+    border-radius:12px;
+    margin-bottom:12px;
+    overflow:hidden;
+  }
+  .day-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 16px;
+    background:#F2F6F4;
+    cursor:pointer;
+  }
+  .day-head .titulo{font-family:'Poppins',sans-serif;font-weight:700;font-size:15px;color:var(--verde-oscuro);}
+  .day-head .chk{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--texto-suave);}
+  .day-head input[type=checkbox]{width:19px;height:19px;accent-color:var(--verde);}
+  .day-body{padding:0 16px;max-height:0;overflow:hidden;transition:max-height .25s ease, padding .25s ease;}
+  .day-body.open{padding:14px 16px 18px;max-height:900px;}
+  .day-body .blk{margin-bottom:12px;}
+  .day-body .blk:last-child{margin-bottom:0;}
+  .day-body .blk .lbl{font-weight:800;color:var(--verde-oscuro);font-size:13px;text-transform:uppercase;letter-spacing:0.3px;margin-bottom:3px;}
+  .day-body .blk p{margin:0;font-size:14.5px;}
+  .day-card.completo .day-head{background:#EAF3E0;}
+  .day-card.completo .titulo{color:var(--verde);}
+  .day-card.completo .titulo::after{content:" ✓";color:var(--verde);}
+
+  .checklist-item{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    padding:10px 0;
+    border-bottom:1px solid var(--borde);
+    font-size:14.5px;
+  }
+  .checklist-item:last-child{border-bottom:none;}
+  .checklist-item input{margin-top:3px;width:18px;height:18px;accent-color:var(--verde);flex-shrink:0;}
+
+  .alerta-box{
+    border:1.5px solid var(--rojo-alerta);
+    background:#FBEEED;
+    border-radius:12px;
+    padding:16px 18px;
+    margin-top:20px;
+  }
+  .alerta-box h3{color:var(--rojo-alerta);font-size:15px;margin:0 0 8px;}
+  .alerta-box ul{margin:0 0 10px;padding-left:20px;font-size:14px;color:#7A2F26;}
+  .alerta-box p{margin:0;font-size:14px;color:#7A2F26;}
+
+  .footer-note{
+    text-align:center;
+    font-size:12.5px;
+    color:var(--texto-suave);
+    margin-top:30px;
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="logo">PECOL</div>
+  <div class="sub">Descifrador de Ladridos</div>
+</header>
+
+<div class="wrap">
+  <div class="progress" id="progress"></div>
+  <div id="app"></div>
+  <div class="footer-note">Tus respuestas y tu progreso se guardan solo en este dispositivo.</div>
+</div>
+
+<script>
+/* ============ CONFIG ============ */
+const WHATSAPP_NUMERO = "5492615171066";
+
+function waLink(mensaje){
+  return "https://wa.me/" + WHATSAPP_NUMERO + "?text=" + encodeURIComponent(mensaje);
+}
+
+/* ============ DATA: LOS 4 PROTOCOLOS ============ */
+const TYPES = {
+
+  ansiedad: {
+    key:"ansiedad",
+    nombre:"Ansiedad por Separación",
+    diagTitle:"{NOMBRE} tiene Ansiedad por Separación.",
+    diagParrafos:[
+      "Esto es lo que está pasando: {NOMBRE} no ladra para molestarte ni por maldad. Ladra porque, para él, que vos te vayas es una situación real de angustia: no sabe cuánto tiempo te vas a ir, no sabe si volvés, y su cuerpo reacciona como reacciona el de cualquiera frente a algo que le genera miedo: se activa, y esa activación sale como ladrido.",
+      "Muchas veces esto pasa porque, sin querer, {NOMBRE} aprendió a depender por completo de que estés ahí para sentirse tranquilo. Nadie le enseñó todavía que puede estar bien solo, incluso estando vos en casa, cerca de él pero sin estar encima. Ese es justamente el próximo paso: enseñarle que la calma no depende de tu presencia constante.",
+      "<strong>Por qué lo que probaste hasta ahora no funcionó:</strong> Si intentaste que la despedida sea \"silenciosa\" o evitar salir para no generarle angustia, es entendible, pero eso no le enseña a {NOMBRE} a estar tranquilo solo. Solo pospone el momento en el que tiene que aprenderlo. Y si lo retaste cuando ladraba al volver, {NOMBRE} no asoció el reto con \"no debí ladrar hace 3 horas\": asoció el reto con tu llegada, lo cual puede empeorar la ansiedad, no mejorarla.",
+      "<strong>La buena noticia:</strong> la ansiedad por separación es uno de los comportamientos más estudiados y con mejor respuesta cuando se trabaja de forma gradual. No es magia ni es rápido, pero es un camino conocido, y en este protocolo te voy marcando exactamente qué camino seguir, paso a paso."
+    ],
+    antes:"La ansiedad por separación no se resuelve \"aguantando más tiempo solo cada vez\" de forma brusca. Eso es lo que la mayoría de la gente prueba sin querer, y es lo que la empeora. Se resuelve con desensibilización gradual: le enseñamos a {NOMBRE}, en dosis que él pueda tolerar sin angustiarse, que vos te vas y volvés, una y otra vez, hasta que su cuerpo aprende que no hay peligro real. Durante estos 7 días no buscamos que {NOMBRE} \"aguante\" largas ausencias: buscamos que construya la base de tranquilidad en ausencias cortas. Algo que ayuda en todo este proceso es que {NOMBRE} tenga un lugar propio: un rincón que sea sinónimo de paz, con su cucha y agua cerca.",
+    days:[
+      {titulo:"Día 1: Mostrar tu ausencia (sin salir de casa)", blocks:[
+        {lbl:"Qué hacer", txt:"Elegí un día normal. Si {NOMBRE} siempre está en el mismo ambiente que vos, hoy lo vas a dejar en otro espacio de la casa sin que te vea. Un buen momento es la hora de la comida: le servís su ración en un lugar donde vos no estés visible, cerrás la puerta y te quedás del otro lado sin que te vea ni te escuche. Cuando empiece a ladrar, abrís la puerta fuerte e inmediatamente, de manera que el ladrido se corte porque te ve. Lo calmás, le das tu orden de \"quedate\", y volvés a cerrar. Si vuelve a ladrar, repetís, un poco más firme. Hoy el tiempo a esperar en silencio es de 15 segundos."},
+        {lbl:"Qué NO hacer", txt:"No cortes el ejercicio antes de completar los 15 segundos de silencio: si lo dejás sin el final indicado, aprende justo lo contrario de lo que buscás. Mientras estás \"escondido\", quedate callado y quieto. Al premiar, que no sea muy efusivo: alcanza con una caricia tranquila y una voz calma."}
+      ]},
+      {titulo:"Día 2: Primeras \"salidas\" cortas", blocks:[
+        {lbl:"Qué hacer (5 minutos, 3 a 5 veces por día)", txt:"Sumale al ejercicio de ayer sonidos típicos de tu salida. Cerrás la puerta y, pasados los 15 segundos, hacé sonar las llaves de manera que te escuche. Si superó ese momento bien, dá pasos audibles como si caminaras hacia la salida, sin alejarte realmente. Si ladra dentro de 30 segundos, repetís la corrección hasta que deje de ladrar."},
+        {lbl:"Qué NO hacer", txt:"Dejar el ejercicio mal enseñado, o hacerlo menos de 3 ni más de 5 veces en el día."},
+        {lbl:"Ajuste", txt:"Si le está costando aprenderlo, puede ser que no estés siguiendo el paso a paso con la meticulosidad necesaria. El resultado de hoy es transitorio, pero necesita quedar bien cerrado."}
+      ]},
+      {titulo:"Día 3: Aumentar de a poco", blocks:[
+        {lbl:"Qué hacer (10-12 minutos, 3 veces al día)", txt:"Con las llaves en la mano y el bolso, alejate unos 5 pasos de la puerta y esperá a que ladre para cortarlo, ahora con tu voz: \"{NOMBRE}, no\", sostenido hasta completar 30 segundos. Volvé a la puerta y, si hizo bien el ejercicio, felicitalo."},
+        {lbl:"Qué NO hacer", txt:"Dejar el ejercicio sin terminar correctamente."},
+        {lbl:"Señal de progreso", txt:"Empezás a notar que los pasos del Día 1 salen más veces seguidas, casi sin variaciones."}
+      ]},
+      {titulo:"Día 4: Generalizar el contexto", blocks:[
+        {lbl:"Qué hacer (10-15 minutos)", txt:"Practicá saliendo por distintas puertas y en distintos momentos del día. Mismo esquema: salidas cortas (1-3 minutos), entrada en calma."},
+        {lbl:"Por qué", txt:"Si solo practicás siempre igual, {NOMBRE} puede aprender que \"esta puerta a esta hora\" está bien, pero seguir angustiándose en otras situaciones."}
+      ]},
+      {titulo:"Día 5: Introducir una rutina de calma", blocks:[
+        {lbl:"Qué hacer (5 minutos antes de salir + salidas de 3-5 minutos)", txt:"Antes de cada salida de práctica, dale algo que lo mantenga ocupado y tranquilo, no algo que lo excite. La idea es asociar tu salida con \"empieza algo tranquilo para mí\", no con \"se termina la fiesta\"."},
+        {lbl:"Qué NO hacer", txt:"No uses este recurso solo el día que te vas por horas: usalo también en las salidas cortas de práctica."}
+      ]},
+      {titulo:"Día 6: Salidas de 5 a 10 minutos", blocks:[
+        {lbl:"Qué hacer", txt:"Repetí el esquema con ausencias de 5 a 10 minutos. Si podés ver cómo está {NOMBRE} durante la ausencia, usalo para confirmar en qué momento se calma."},
+        {lbl:"Ajuste según lo que observes", txt:"Si se calma en los primeros 2 minutos, podés avanzar más rápido. Si tarda o no llega a calmarse en esos 10 minutos, quedate en este nivel unos días más: no hay apuro."}
+      ]},
+      {titulo:"Día 7: Consolidar y evaluar", blocks:[
+        {lbl:"Qué hacer", txt:"Repetí 2-3 salidas de 10 minutos, y evaluá con el checklist de la semana."},
+        {lbl:"Cierre de la semana", txt:"Esta primera semana no busca que {NOMBRE} tolere una jornada laboral completa: busca reconstruir la confianza de que las salidas son seguras y predecibles."}
+      ]}
+    ],
+    checklist:[
+      "¿{NOMBRE} llegó a tener momentos de calma durante las ausencias cortas?",
+      "¿La despedida y el regreso son más neutros que al empezar?",
+      "¿Notás que tarda menos en calmarse después de que te vas?",
+      "¿Pudiste sostener el ritmo de práctica la mayoría de los días?"
+    ],
+    checklistBien:"Vas por buen camino. El siguiente paso natural es extender los tiempos de ausencia de forma gradual, siguiendo la misma lógica.",
+    checklistMal:"No es un fracaso: la ansiedad por separación tiene distintos niveles de intensidad, y algunos perros necesitan más repeticiones en cada escalón antes de subir. Esto es exactamente el tipo de ajuste que un seguimiento personalizado puede resolver mejor que un protocolo genérico de 7 días.",
+    alertas:[
+      "{NOMBRE} se lastima intentando salir o rompe puertas/ventanas de forma severa",
+      "Hay signos de angustia extrema (salivación excesiva, jadeo intenso sin calor, temblores) incluso en ausencias muy cortas",
+      "El comportamiento no mejora nada después de sostener el protocolo con constancia"
+    ],
+    alertaMsg:"Esto no es algo que tengas que resolver solo con una guía. Hay perros que necesitan un plan más de cerca, ajustado semana a semana a su ritmo, y para eso está el acompañamiento personalizado de PECOL."
+  },
+
+  territorial: {
+    key:"territorial",
+    nombre:"Territorial",
+    diagTitle:"{NOMBRE} tiene un ladrido Territorial.",
+    diagParrafos:[
+      "Esto es lo que está pasando: {NOMBRE} ve su casa como el espacio que tiene que proteger. Cuando pasa gente, otro perro, o hay un ruido de la calle, su sistema de alarma se activa. No es maldad ni es que \"sea nervioso\". Es un instinto de guardia real, pero descontrolado, sin un límite claro de cuándo parar.",
+      "<strong>Por qué lo que probaste hasta ahora no funcionó:</strong> Si lo retaste o le dijiste \"basta\" cuando ladraba al estímulo, tu voz elevada se sumó a la alarma en vez de calmarla. Para {NOMBRE}, en ese momento vos también estás \"ladrando\" junto a él. Confirma que hay algo para alertar, no le enseña que no hace falta.",
+      "<strong>La buena noticia:</strong> el ladrido territorial responde muy bien cuando se trabaja la distancia al estímulo de forma progresiva, en vez de esperar que el perro \"aguante\" el estímulo de golpe."
+    ],
+    antes:"El ladrido territorial no se apaga pidiéndole al perro que ignore lo que ve. Se resuelve bajando la intensidad del estímulo (distancia, tiempo de exposición) hasta un punto donde {NOMBRE} puede notar el estímulo sin activarse del todo, y desde ahí construir calma de a poco. Para cambiar el foco de atención, llamalo siempre por su nombre, {NOMBRE}, de manera de desenfocarlo del estímulo que desencadena su ladrido.",
+    days:[
+      {titulo:"Día 1: Identificar el límite", blocks:[
+        {lbl:"Qué hacer (10 minutos)", txt:"Llevá a {NOMBRE} cerca de una ventana o puerta desde donde vea la calle. Anotá a qué distancia del estímulo empieza a ladrar: ese es tu punto de partida, no el objetivo. Cuando empiece a ladrar, cambiale el foco de atención, y cuando se calle, felicitalo con caricias relajantes (caricias sí, palmaditas no)."},
+        {lbl:"Qué NO hacer", txt:"No lo expongas a propósito a la distancia más cercana para \"ver qué pasa\". El objetivo de hoy es solo observar."}
+      ]},
+      {titulo:"Día 2: Bajar el volumen del entorno", blocks:[
+        {lbl:"Qué hacer (10 minutos)", txt:"Si tenés forma de tapar parcialmente la vista a la calle (cortina, papel esmerilado, mover un mueble), hacelo. Si no podés taparlo, cambiá a {NOMBRE} de ambiente."},
+        {lbl:"Por qué", txt:"Cada vez que {NOMBRE} ladra y \"gana\" (el estímulo se va), refuerza el hábito. Bajar la exposición general reduce esas repeticiones."}
+      ]},
+      {titulo:"Día 3: Practicar a distancia segura", blocks:[
+        {lbl:"Qué hacer (10 minutos)", txt:"Pedile a alguien que pase caminando a la distancia donde {NOMBRE} todavía no ladra (la del Día 1). Cuando lo note y se mantenga tranquilo, dale un premio de inmediato: el mejor premio es una caricia relajante."},
+        {lbl:"Qué NO hacer", txt:"No acortes la distancia todavía, aunque parezca que \"está tranquilo, probemos más cerca\". Repetí varias veces a la misma distancia antes de avanzar."}
+      ]},
+      {titulo:"Día 4: Enseñar a mirarte a vos", blocks:[
+        {lbl:"Qué hacer (10 minutos)", txt:"En el mismo ejercicio del Día 3, cuando {NOMBRE} note el estímulo, decí \"{NOMBRE}\". Si te mira a vos en vez de fijarse en el estímulo, premiá ahí mismo."},
+        {lbl:"Por qué", txt:"Le estás dando una alternativa concreta al ladrido: mirarte a vos también tiene recompensa."}
+      ]},
+      {titulo:"Día 5: Acortar la distancia de a poco", blocks:[
+        {lbl:"Qué hacer (10 minutos)", txt:"Repetí el ejercicio, ahora un poco más cerca del estímulo. Si se mantiene tranquilo o mira hacia vos, seguís. Si ladra, volvé un paso atrás."},
+        {lbl:"Ajuste", txt:"No hay problema en quedarte en la misma distancia varios días si hace falta. Forzar el avance es lo que rompe el progreso."}
+      ]},
+      {titulo:"Día 6: Practicar en situación real", blocks:[
+        {lbl:"Qué hacer (10-15 minutos)", txt:"Durante un paseo, practicá el mismo ejercicio de mirarte a vos cuando aparezca otro perro o una persona. Prestá atención a los alrededores, anticipando toda posible interacción."},
+        {lbl:"Por qué", txt:"El objetivo final no es que se quede tranquilo mirando por la ventana, es que pueda manejar la misma situación en la calle."}
+      ]},
+      {titulo:"Día 7: Consolidar y evaluar", blocks:[
+        {lbl:"Qué hacer", txt:"Repetí el ejercicio de la ventana o puerta y el de la calle, y evaluá con el checklist de la semana."},
+        {lbl:"Cierre de la semana", txt:"Esta semana no busca eliminar el instinto de alerta, eso es normal y sano. Busca que {NOMBRE} tenga una alternativa a la reacción explosiva."}
+      ]}
+    ],
+    checklist:[
+      "¿{NOMBRE} logró quedarse tranquilo a la distancia que identificaste el Día 1?",
+      "¿Respondió al menos una vez mirándote a vos en vez de ladrar?",
+      "¿Pudiste practicar en situación real (paseo) al menos una vez?",
+      "¿Sostuviste la práctica la mayoría de los días?"
+    ],
+    checklistBien:"Vas bien encaminado. El paso siguiente es seguir acortando distancia de a poco y sumar más tipos de estímulo, de a uno o dos por vez.",
+    checklistMal:"Puede ser que el punto de partida elegido el Día 1 haya sido más cercano de lo que {NOMBRE} toleraba. Es normal cuando el umbral de reacción es muy bajo, y es justo el tipo de ajuste fino que un seguimiento personalizado resuelve mejor.",
+    alertas:[
+      "{NOMBRE} reacciona con la misma intensidad sin importar la distancia, incluso a estímulos muy lejanos",
+      "Hay intentos de morder la ventana, la puerta, o lastimarse en el intento de llegar al estímulo",
+      "El ladrido territorial va acompañado de gruñido y postura corporal rígida ante cualquier estímulo, incluso familiar"
+    ],
+    alertaMsg:"Esto excede lo que un protocolo de autoayuda puede resolver solo. Necesitás una mirada personalizada del caso, y para eso está el acompañamiento de PECOL."
+  },
+
+  aburrimiento: {
+    key:"aburrimiento",
+    nombre:"Aburrimiento / Exceso de energía",
+    diagTitle:"{NOMBRE} ladra por Aburrimiento o Exceso de Energía.",
+    diagParrafos:[
+      "Esto es lo que está pasando: {NOMBRE} tiene mucha energía física o mental acumulada que no encuentra por dónde salir, y el ladrido es la válvula de escape. No pasa por maldad ni por capricho. Es como una olla a presión sin válvula: la energía no desaparece porque no la dejes salir, se va acumulando hasta que encuentra la forma de escaparse, y en {NOMBRE}, esa forma es el ladrido.",
+      "<strong>Por qué lo que probaste hasta ahora no funcionó:</strong> Si le diste más juguetes o más paseos y siguió igual, es porque el problema no es solo la cantidad de movimiento, es el tipo de estímulo. Un paseo apurado, sin que {NOMBRE} pueda olfatear ni hacer sus necesidades con calma, gasta menos energía mental de la que parece.",
+      "<strong>La buena noticia:</strong> este es de los ladridos más fáciles de mejorar rápido, porque no depende de cambiar una emoción compleja, depende de reorganizar la rutina diaria, y con constancia semanal se soluciona."
+    ],
+    antes:"No se trata de agregar más horas de paseo, se trata de agregar el tipo correcto de actividad: olfativa, mental y de resolución de problemas, combinada con descanso real.",
+    days:[
+      {titulo:"Día 1: Auditar la rutina actual", blocks:[
+        {lbl:"Qué hacer (10 minutos)", txt:"Anotá cuánto tiempo camina {NOMBRE} por día, a qué ritmo, y si tiene algún momento de juego mental (masticar algo, buscar comida escondida, entrenar algún ejercicio). Esto te da el punto de partida real, no el que suponés."},
+        {lbl:"Por qué", txt:"La mayoría de los tutores subestima cuánta energía mental necesita un perro y sobreestima cuánto gasta con el paseo habitual."}
+      ]},
+      {titulo:"Día 2: Sumar un paseo de olfato", blocks:[
+        {lbl:"Qué hacer (15-20 minutos)", txt:"Hacé un paseo donde el objetivo no sea caminar rápido, sino dejar que {NOMBRE} olfatee todo lo que quiera, al ritmo que él marque. Un solo paseo así puede cansar mentalmente más que dos paseos rápidos."},
+        {lbl:"Qué NO hacer", txt:"No lo apures ni tires de la correa para que siga caminando. El olfato es el trabajo de hoy."}
+      ]},
+      {titulo:"Día 3: Introducir un juguete de búsqueda de comida", blocks:[
+        {lbl:"Qué hacer (10 minutos)", txt:"Dale parte de su comida diaria en un juguete que lo obligue a trabajar para conseguirla, en vez de servirla directo en el plato. Por ejemplo: poné su ración detrás de un bidón de agua vacío para que tenga que correrlo."},
+        {lbl:"Por qué", txt:"Resolver un problema para conseguir comida es de las actividades que más energía mental consume. Sin necesidad de buscar su sustento, un perro tiene energía de sobra que después se desborda en forma de ladrido."}
+      ]},
+      {titulo:"Día 4: Sesión corta de entrenamiento", blocks:[
+        {lbl:"Qué hacer (5-10 minutos)", txt:"Practicá un ejercicio simple (sentado, quieto, o algo nuevo) con premios. No importa el ejercicio en sí, importa que {NOMBRE} tenga que pensar y prestar atención."},
+        {lbl:"Por qué", txt:"El entrenamiento cansa mentalmente distinto al juego físico. Es de los recursos más subestimados para bajar el aburrimiento."}
+      ]},
+      {titulo:"Día 5: Armar una rutina fija de actividad y descanso", blocks:[
+        {lbl:"Qué hacer", txt:"Con lo que probaste los días anteriores, armá un esquema diario: paseo de olfato, un momento de juego mental, un momento de entrenamiento corto, y bloques claros de descanso sin estímulo. Que no dure más de 20 a 30 minutos en total."},
+        {lbl:"Por qué", txt:"Un perro que sabe cuándo toca actividad y cuándo toca calma se regula mejor que uno con una rutina impredecible o excesiva."}
+      ]},
+      {titulo:"Día 6: Detectar los momentos de mayor ladrido", blocks:[
+        {lbl:"Qué hacer", txt:"Anotá en qué momento del día ladra más por aburrimiento. Sumá una actividad de las de arriba justo antes de ese horario."},
+        {lbl:"Por qué", txt:"Adelantarte al momento de mayor ladrido con una actividad es más efectivo que reaccionar después de que ya empezó."}
+      ]},
+      {titulo:"Día 7: Consolidar y evaluar", blocks:[
+        {lbl:"Qué hacer", txt:"Sostené la rutina armada el Día 5 y evaluá con el checklist de la semana."},
+        {lbl:"Cierre de la semana", txt:"Esta semana no busca agotar a {NOMBRE}, busca darle una salida ordenada a la energía que ya tiene. Si este ladrido no se canaliza, puede derivar en un trastorno de conducta más serio con el tiempo."}
+      ]}
+    ],
+    checklist:[
+      "¿Notás menos ladridos en los momentos que identificaste como críticos?",
+      "¿Pudiste sostener al menos un paseo de olfato y una sesión de juego mental por día?",
+      "¿{NOMBRE} parece más tranquilo en los momentos de descanso?",
+      "¿Sostuviste la rutina la mayoría de los días?"
+    ],
+    checklistBien:"Vas bien. El siguiente paso es afianzar la rutina y sumar más variedad de actividades mentales.",
+    checklistMal:"Puede que el aburrimiento esté mezclado con otro motivo (ansiedad, territorial), lo cual es común. Conviene revisarlo con más detalle en un seguimiento personalizado.",
+    alertas:[
+      "El ladrido por aburrimiento no baja nada después de una semana sosteniendo la rutina completa",
+      "Aparecen otras conductas junto al ladrido: destrozar cosas, girar en círculos, lamerse en exceso",
+      "{NOMBRE} parece incapaz de calmarse incluso después de actividad intensa"
+    ],
+    alertaMsg:"Puede haber más de un factor sumado al aburrimiento. Vale la pena una mirada más de cerca con acompañamiento de PECOL."
+  },
+
+  excitacion: {
+    key:"excitacion",
+    nombre:"Excitación",
+    diagTitle:"{NOMBRE} ladra por Excitación.",
+    diagParrafos:[
+      "Esto es lo que está pasando: {NOMBRE} no tiene todavía la capacidad de regular una emoción positiva muy intensa. Cuando llega una visita o empieza el juego, la alegría lo desborda, y el ladrido es la forma en la que ese desborde sale. No es mala educación, es que nadie le enseñó todavía cómo estar contento sin perder el control.",
+      "<strong>Por qué lo que probaste hasta ahora no funcionó:</strong> Si lo ignoraste hasta que se calmara, es una idea en la dirección correcta, pero probablemente faltó constancia o el resto del contexto (la visita, tu propio entusiasmo) seguía alimentando la excitación mientras tanto.",
+      "<strong>La buena noticia:</strong> la excitación se regula enseñando una rutina clara de qué hacer en esos momentos, no reprimiendo la alegría de {NOMBRE}."
+    ],
+    antes:"El objetivo no es que {NOMBRE} deje de alegrarse, es darle una forma concreta de canalizar esa alegría (sentarse, esperar) que reemplace al ladrido descontrolado.",
+    days:[
+      {titulo:"Día 1: Identificar el patrón exacto", blocks:[
+        {lbl:"Qué hacer (10 minutos)", txt:"Anotá qué momento dispara la excitación con más fuerza: el timbre, la puerta abriéndose, ver a la visita, el inicio del juego. Cuanto más puntual el disparador, más fácil el trabajo."}
+      ]},
+      {titulo:"Día 2: Practicar la entrada en calma", blocks:[
+        {lbl:"Qué hacer (10 minutos)", txt:"Pedile a alguien de confianza que entre a tu casa. Tenelo a {NOMBRE} sujeto con correa. Que la visita ignore por completo a {NOMBRE} hasta que esté tranquilo. Recién ahí puede saludarlo, siempre con vos sosteniendo la correa."},
+        {lbl:"Qué NO hacer", txt:"No dejes que la visita salude apenas entra, aunque {NOMBRE} \"se vea contento\". Ese saludo inmediato es lo que refuerza la excitación."}
+      ]},
+      {titulo:"Día 3: Enseñar sentado como forma de saludo", blocks:[
+        {lbl:"Qué hacer (10 minutos)", txt:"Practicá que {NOMBRE} se siente para recibir el saludo, primero con vos, después con la visita del Día 2. Si se para o ladra, lo volvés a sentar y la visita deja de prestarle atención hasta que se calme."},
+        {lbl:"Por qué", txt:"Le das una acción concreta: sentarse abre la puerta al saludo, pararse o ladrar la cierra."}
+      ]},
+      {titulo:"Día 4: Simular la llegada sin que sea real", blocks:[
+        {lbl:"Qué hacer (10 minutos)", txt:"Tocá el timbre vos mismo, o golpeá la puerta, varias veces a lo largo del día sin que después entre nadie."},
+        {lbl:"Por qué", txt:"Si el timbre siempre significa excitación máxima, es un disparador difícil de manejar. Bajarle intensidad al sonido en sí ayuda mucho."}
+      ]},
+      {titulo:"Día 5: Practicar con una visita real, de baja exigencia", blocks:[
+        {lbl:"Qué hacer (10-15 minutos)", txt:"Repetí el ejercicio del Día 2 y 3 con una visita real, alguien con quien {NOMBRE} ya esté algo acostumbrado."},
+        {lbl:"Ajuste", txt:"Si {NOMBRE} no logra calmarse en ningún momento, la próxima vez elegí una visita todavía más neutra."}
+      ]},
+      {titulo:"Día 6: Subir la dificultad de a poco", blocks:[
+        {lbl:"Qué hacer", txt:"Repetí el ejercicio con una visita un poco más estimulante que la del Día 5."},
+        {lbl:"Por qué", txt:"El objetivo es que la calma en el saludo se sostenga incluso cuando la emoción de base es más alta."}
+      ]},
+      {titulo:"Día 7: Consolidar y evaluar", blocks:[
+        {lbl:"Qué hacer", txt:"Repetí el ejercicio completo una vez más y evaluá con el checklist de la semana."},
+        {lbl:"Cierre de la semana", txt:"Esta semana no apunta a que {NOMBRE} deje de alegrarse con las visitas, apunta a que tenga una forma clara de expresar esa alegría sin que se vuelva descontrolada."}
+      ]}
+    ],
+    checklist:[
+      "¿{NOMBRE} logró sentarse para recibir el saludo al menos una vez?",
+      "¿Notás que tarda menos en calmarse después de la llegada de alguien?",
+      "¿El ejercicio del timbre simulado bajó la intensidad de la reacción?",
+      "¿Pudiste practicar con al menos una visita real?"
+    ],
+    checklistBien:"Vas por buen camino. El siguiente paso es subir la dificultad con visitas más estimulantes y contextos nuevos.",
+    checklistMal:"Puede ser que el nivel de excitación de {NOMBRE} necesite pasos intermedios más chicos entre cada ejercicio. Es un ajuste que un seguimiento personalizado puede afinar mejor.",
+    alertas:[
+      "La excitación deriva en mordidas de juego fuertes o incontrolables, incluso sin intención de lastimar",
+      "{NOMBRE} no logra calmarse en ningún momento, ni con la visita más neutra posible",
+      "Aparecen accidentes de incontinencia por la emoción"
+    ],
+    alertaMsg:"Este nivel de excitación necesita un plan ajustado a {NOMBRE} en particular. Para eso está el acompañamiento de PECOL."
+  }
+};
+
+/* ============ DATA: PREGUNTAS ============ */
+const P1_OPTS = [
+  {letra:"A", txt:"Cuando yo no estoy, o cuando me estoy por ir", sub:[{key:"A1", txt:"Cuando pasa unas horas que no me ve"}]},
+  {letra:"B", txt:"Cuando pasa gente, otros perros, o hay ruidos afuera (timbre, vecinos, calle)", sub:[
+    {key:"B1", txt:"Además se le eriza el pelo, gruñe o se pone rígido"},
+    {key:"B2", txt:"Le pasa igual estando en la calle durante el paseo, no solo desde adentro de casa"}
+  ]},
+  {letra:"C", txt:"En cualquier momento, sin que yo note un motivo claro", sub:[{key:"C1", txt:"Aunque ya lo haya paseado y le haya dado de comer"}]},
+  {letra:"D", txt:"Cuando hay visitas, cuando jugamos, o cuando está muy entusiasmado", sub:[{key:"D1", txt:"Además mueve la cola, salta o busca contacto"}]}
+];
+const P2_OPTS = [
+  {letra:"A", txt:"Verme salir, escuchar las llaves, quedarse solo en casa"},
+  {letra:"B", txt:"Estímulos externos: gente pasando, otros perros, sonidos de la calle"},
+  {letra:"C", txt:"Nada en particular, parece que ladra por ladrar, sobre todo cuando está solo un rato largo"},
+  {letra:"D", txt:"La emoción del momento: cuando llego o alguien llega a casa, empieza el juego"}
+];
+const P3_OPTS = [
+  {letra:"A", txt:"Nada todavía / evitar irme, o probé un consejo de un conocido que a mí no me funcionó"},
+  {letra:"B", txt:"Retarlo, decirle \"basta\", intentar que se calme cuando pasa el estímulo"},
+  {letra:"C", txt:"Darle más juguetes o paseos más largos para que se canse, pero sigue igual"},
+  {letra:"D", txt:"Ignorarlo hasta que se calme, pero sigue ladrando igual en cada visita"}
+];
+const P4_OPTS = [
+  {letra:"E", txt:"Hace poco (semanas): antes no lo hacía o recién lo adoptaste"},
+  {letra:"F", txt:"Hace varios meses"},
+  {letra:"G", txt:"Desde siempre / desde que lo tenés"}
+];
+const LETTER_TO_TYPE = {A:"ansiedad", B:"territorial", C:"aburrimiento", D:"excitacion"};
+
+/* ============ STATE ============ */
+const STORAGE_KEY = "pecol_descifrador_v1";
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw) return JSON.parse(raw);
+  }catch(e){}
+  return {
+    screen:"welcome",
+    nombre:"", email:"", ninos:null, salud:null, patio:null,
+    p1:null, p1sub:[], p2:null, p3:null, p4:null,
+    checklistWeek:[false,false,false,false],
+    dayDone:{}
+  };
+}
+function saveState(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+let state = loadState();
+
+function go(screen){ state.screen = screen; saveState(); render(); window.scrollTo(0,0); }
+
+/* ============ LOGIC ============ */
+function computeDiagnosis(){
+  const votes = [state.p1, state.p2].filter(Boolean);
+  const counts = {};
+  votes.forEach(l => counts[l] = (counts[l]||0)+1);
+  let entries = Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+  const dominant = entries[0][0];
+  const mixed = entries.length > 1;
+  return { typeKey: LETTER_TO_TYPE[dominant], mixed, secondaryLetter: mixed ? entries[1][0] : null };
+}
+
+function nombrePerro(){ return state.nombre && state.nombre.trim() ? state.nombre.trim() : "tu perro"; }
+function withName(str){ return str.split("{NOMBRE}").join(nombrePerro()); }
+
+/* ============ RENDER HELPERS ============ */
+const app = document.getElementById("app");
+const progressEl = document.getElementById("progress");
+const SCREEN_ORDER = ["welcome","form","p1","p2","p3","p4","diagnosis"];
+
+function renderProgress(){
+  const idx = SCREEN_ORDER.indexOf(state.screen);
+  progressEl.innerHTML = "";
+  if(idx < 0){ progressEl.style.display="none"; return; }
+  progressEl.style.display="flex";
+  SCREEN_ORDER.slice(1).forEach((s,i)=>{
+    const seg = document.createElement("div");
+    seg.className = "seg" + (i < idx ? " done" : "");
+    progressEl.appendChild(seg);
+  });
+}
+
+function el(html){ const d=document.createElement("div"); d.innerHTML=html; return d.firstElementChild; }
+
+/* ============ SCREENS ============ */
+function screenWelcome(){
+  return `
+    <div class="card">
+      <div class="eyebrow">Descifrador de Ladridos</div>
+      <h2>Vamos a entender por qué ladra tu perro.</h2>
+      <p>Son 4 preguntas simples. Al final vas a saber exactamente qué tipo de ladrido tiene y qué ruta de 7 días le corresponde.</p>
+      <button class="btn" onclick="go('form')">Empezar</button>
+    </div>
+  `;
+}
+
+function screenForm(){
+  return `
+    <div class="card">
+      <div class="eyebrow">Antes de empezar</div>
+      <h2>Contame un poco de vos y tu perro</h2>
+
+      <label>Nombre de tu perro</label>
+      <input type="text" id="f_nombre" value="${state.nombre||""}" placeholder="Ej: Rocky">
+
+      <label>Tu email</label>
+      <input type="email" id="f_email" value="${state.email||""}" placeholder="tu@email.com">
+
+      <label>¿Hay niños en casa que juegan mucho con él?</label>
+      <div class="radio-row" id="f_ninos">
+        ${radioPair("ninos", state.ninos)}
+      </div>
+
+      <label>¿Tiene alguna condición de salud diagnosticada (neurológica, crónica, en tratamiento)?</label>
+      <div class="radio-row" id="f_salud">
+        ${radioPair("salud", state.salud)}
+      </div>
+
+      <label>¿Tu perro pasa la mayor parte del día en el patio o el portón?</label>
+      <div class="radio-row" id="f_patio">
+        ${radioPair("patio", state.patio)}
+      </div>
+
+      <button class="btn" id="f_continuar" style="margin-top:18px;">Continuar al diagnóstico</button>
+    </div>
+  `;
+}
+function radioPair(name, current){
+  return ["Sí","No"].map(v=>{
+    const checked = current===v ? "checked" : "";
+    const cls = current===v ? "opt checked" : "opt";
+    return `<label class="${cls}" data-name="${name}" data-val="${v}"><input type="radio" name="${name}" value="${v}" ${checked}> ${v}</label>`;
+  }).join("");
+}
+
+function screenPregunta(num, titulo, opts, stateKey, allowSub){
+  const selected = state[stateKey];
+  const choices = opts.map(o=>{
+    const isSel = selected===o.letra;
+    let sub = "";
+    if(allowSub && o.sub && isSel){
+      sub = o.sub.map(s=>{
+        const checked = state.p1sub.includes(s.key) ? "checked" : "";
+        return `<div class="sub-check"><input type="checkbox" data-subkey="${s.key}" ${checked}><span>${s.txt}</span></div>`;
+      }).join("");
+    }
+    return `<div class="choice ${isSel?"selected":""}" data-letra="${o.letra}">${o.txt}${sub}</div>`;
+  }).join("");
+  return `
+    <div class="back-link" onclick="goBack()">‹ Volver</div>
+    <div class="card">
+      <div class="eyebrow">Pregunta ${num} de 4</div>
+      <h2>${titulo}</h2>
+      <div id="opciones">${choices}</div>
+      <button class="btn" id="btnSiguiente" ${selected?"":"disabled"}>Siguiente</button>
+    </div>
+  `;
+}
+
+function screenDiagnosis(){
+  const {typeKey, mixed, secondaryLetter} = computeDiagnosis();
+  const type = TYPES[typeKey];
+  const nombre = nombrePerro();
+
+  let extraNotas = "";
+  if(mixed){
+    extraNotas += `<div class="nota-box">${nombre} puede tener más de un motivo. Empezamos por el más urgente, y una vez que avances con este, te vamos a sugerir el siguiente paso.</div>`;
+  }
+  if(state.ninos==="Sí" && (typeKey==="excitacion" || state.p1==="D" || state.p2==="D")){
+    extraNotas += `<div class="nota-box">Una nota para los papás de la casa: si hay chicos que juegan mucho con ${nombre}, pedirles que no lo sobre-exciten adentro de la casa ayuda mucho a este protocolo. No hace falta que dejen de jugar con él, alcanza con que los juegos más intensos se hagan afuera o en momentos separados de este ejercicio.</div>`;
+  }
+  if(state.patio==="Sí" && (typeKey==="territorial" || typeKey==="aburrimiento")){
+    extraNotas += `<div class="nota-box">Otra cosa que vale la pena sumar: nos contaste que ${nombre} pasa la mayor parte del día en el patio o el portón. Mejorar este comportamiento es más difícil cuando un perro pasa tanto tiempo aislado afuera. Si podés sumarle más tiempo adentro de casa, con su propio espacio de calma, le va a hacer bien a este proceso.</div>`;
+  }
+
+  let tono = "";
+  if(state.p4==="E"){
+    tono = `<p>Como esto empezó hace poco, es un buen momento para actuar: cuanto antes lo trabajes, más fácil se corrige.</p>`;
+  } else if(state.p4==="F" || state.p4==="G"){
+    tono = `<p>No es tu culpa que esto no se haya resuelto antes. Ahora vamos a hacerlo bien, paso a paso.</p>`;
+  }
+
+  if(state.salud==="Sí"){
+    return `
+      <div class="diag-box">
+        <h2>${withName(type.diagTitle.replace("{NOMBRE}", nombre))}</h2>
+        <p>Es lo que indican tus respuestas. Pero antes de mostrarte el protocolo estándar, hay algo que preferimos mirar con más cuidado.</p>
+      </div>
+      <div class="card">
+        <p>Nos contaste que ${nombre} tiene una condición de salud diagnosticada, y eso puede cambiar por completo cómo conviene trabajar este comportamiento. Un protocolo genérico no contempla esos detalles, y aplicarlo sin ese cuidado podría no ser lo mejor para él.</p>
+        <p>Preferimos que hablemos directo así lo vemos juntos, sin vueltas.</p>
+        <a class="btn whatsapp" href="${waLink('Hola Marcelo! Hice el diagnóstico del Descifrador de Ladridos y me salió que ' + nombre + ' tiene ' + type.nombre + ', pero tiene una condición de salud diagnosticada y quiero contarte el caso.')}" target="_blank">Escribirle a Marcelo por WhatsApp</a>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="diag-box">
+      <h2>${withName(type.diagTitle.replace("{NOMBRE}", nombre))}</h2>
+      ${type.diagParrafos.map(p=>`<p>${withName(p)}</p>`).join("")}
+    </div>
+    ${tono}
+    ${extraNotas}
+    <button class="btn" onclick="startProtocol('${typeKey}')">Ver mi protocolo de 7 días</button>
+  `;
+}
+
+function screenProtocol(){
+  const type = TYPES[state.activeType];
+  const nombre = nombrePerro();
+  const daysHtml = type.days.map((d,i)=>{
+    const done = !!state.dayDone[state.activeType+"_"+i];
+    const blocksHtml = d.blocks.map(b=>`<div class="blk"><div class="lbl">${b.lbl}</div><p>${withName(b.txt)}</p></div>`).join("");
+    return `
+      <div class="day-card ${done?"completo":""}" data-idx="${i}">
+        <div class="day-head" data-toggle="${i}">
+          <div class="titulo">${d.titulo}</div>
+          <div class="chk" onclick="event.stopPropagation()">
+            <input type="checkbox" data-daycheck="${i}" ${done?"checked":""}> Hecho
+          </div>
+        </div>
+        <div class="day-body" id="daybody_${i}">
+          ${blocksHtml}
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  return `
+    <div class="card">
+      <div class="eyebrow">Tu diagnóstico: ${type.nombre}</div>
+      <h2>Protocolo de 7 días</h2>
+      <p>${withName(type.antes)}</p>
+    </div>
+    ${daysHtml}
+    <button class="btn" onclick="go('checklist')">Ya hice los 7 días, quiero evaluar mi semana</button>
+    <button class="btn secundario" onclick="go('diagnosis')" style="margin-top:10px;">Volver al diagnóstico</button>
+  `;
+}
+
+function screenChecklist(){
+  const type = TYPES[state.activeType];
+  const itemsHtml = type.checklist.map((q,i)=>{
+    const checked = state.checklistWeek[i] ? "checked" : "";
+    return `<div class="checklist-item"><input type="checkbox" data-week="${i}" ${checked}><span>${withName(q)}</span></div>`;
+  }).join("");
+  const score = state.checklistWeek.filter(Boolean).length;
+  let resultado = "";
+  if(state.checklistShowResult){
+    const msg = withName(score>=3 ? type.checklistBien : type.checklistMal);
+    const cls = score>=3 ? "" : "";
+    resultado = `
+      <div class="card" style="border-color:var(--dorado);">
+        <div class="eyebrow">Resultado de tu semana (${score}/4)</div>
+        <p>${msg}</p>
+        ${score<3
+          ? `<a class="btn whatsapp" href="${waLink('Hola Marcelo! Terminé la primera semana del protocolo de ' + type.nombre + ' con ' + nombrePerro() + ' y me gustaría un seguimiento más personalizado.')}" target="_blank">Pedir acompañamiento personalizado</a>`
+          : `<a class="btn whatsapp" href="${waLink('Hola Marcelo! Terminé la primera semana del protocolo de ' + type.nombre + ' con ' + nombrePerro() + ' y nos fue bien. Quiero saber cuáles son los próximos pasos.')}" target="_blank">Quiero seguir avanzando con ${nombrePerro()}</a>`
+        }
+      </div>
+    `;
+  }
+  return `
+    <div class="card">
+      <div class="eyebrow">Checklist de seguimiento semanal</div>
+      <h2>¿Cómo te fue esta semana?</h2>
+      ${itemsHtml}
+      <button class="btn" style="margin-top:16px;" onclick="evaluateWeek()">Ver resultado</button>
+    </div>
+    ${resultado}
+    <div class="alerta-box">
+      <h3>Señales de alerta</h3>
+      <ul>${type.alertas.map(a=>`<li>${withName(a)}</li>`).join("")}</ul>
+      <p>${withName(type.alertaMsg)}</p>
+    </div>
+    <button class="btn secundario" onclick="go('protocol')" style="margin-top:14px;">Volver al protocolo</button>
+  `;
+}
+
+/* ============ RENDER ROOT ============ */
+function render(){
+  renderProgress();
+  let html = "";
+  switch(state.screen){
+    case "welcome": html = screenWelcome(); break;
+    case "form": html = screenForm(); break;
+    case "p1": html = screenPregunta(1, "¿Cuándo ladra más tu perro?", P1_OPTS, "p1", true); break;
+    case "p2": html = screenPregunta(2, "¿Qué te parece que inicia este comportamiento?", P2_OPTS, "p2", false); break;
+    case "p3": html = screenPregunta(3, "¿Qué intentaste hasta ahora para corregirlo?", P3_OPTS, "p3", false); break;
+    case "p4": html = screenPregunta(4, "¿Hace cuánto tiene este comportamiento?", P4_OPTS, "p4", false); break;
+    case "diagnosis": html = screenDiagnosis(); break;
+    case "protocol": html = screenProtocol(); break;
+    case "checklist": html = screenChecklist(); break;
+    default: html = screenWelcome();
+  }
+  app.innerHTML = html;
+  attachHandlers();
+}
+
+function goBack(){
+  const order = ["welcome","form","p1","p2","p3","p4","diagnosis"];
+  const idx = order.indexOf(state.screen);
+  if(idx>0){ go(order[idx-1]); }
+}
+
+function startProtocol(typeKey){
+  state.activeType = typeKey;
+  saveState();
+  go("protocol");
+}
+
+function evaluateWeek(){
+  state.checklistShowResult = true;
+  saveState();
+  render();
+}
+
+/* ============ EVENT HANDLERS ============ */
+function attachHandlers(){
+  // form
+  const fNombre = document.getElementById("f_nombre");
+  if(fNombre){
+    fNombre.addEventListener("input", e=>{ state.nombre = e.target.value; saveState(); });
+    const fEmail = document.getElementById("f_email");
+    fEmail.addEventListener("input", e=>{ state.email = e.target.value; saveState(); });
+
+    document.querySelectorAll("#f_ninos label, #f_salud label, #f_patio label").forEach(lab=>{
+      lab.addEventListener("click", ()=>{
+        const name = lab.dataset.name, val = lab.dataset.val;
+        state[name] = val;
+        saveState();
+        render();
+      });
+    });
+
+    document.getElementById("f_continuar").addEventListener("click", ()=>{
+      if(!state.nombre || !state.nombre.trim()){ alert("Contame el nombre de tu perro para personalizar tu protocolo."); return; }
+      if(!state.email || !state.email.trim()){ alert("Necesitamos tu email para poder acompañarte."); return; }
+      go("p1");
+    });
+  }
+
+  // preguntas
+  document.querySelectorAll(".choice").forEach(c=>{
+    c.addEventListener("click", (e)=>{
+      if(e.target.closest(".sub-check")) return;
+      const letra = c.dataset.letra;
+      if(state.screen==="p1") state.p1 = letra;
+      if(state.screen==="p2") state.p2 = letra;
+      if(state.screen==="p3") state.p3 = letra;
+      if(state.screen==="p4") state.p4 = letra;
+      saveState();
+      render();
+    });
+  });
+  document.querySelectorAll("[data-subkey]").forEach(cb=>{
+    cb.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      const key = cb.dataset.subkey;
+      const idx = state.p1sub.indexOf(key);
+      if(cb.checked){ if(idx<0) state.p1sub.push(key); }
+      else { if(idx>=0) state.p1sub.splice(idx,1); }
+      saveState();
+    });
+  });
+  const btnSig = document.getElementById("btnSiguiente");
+  if(btnSig){
+    btnSig.addEventListener("click", ()=>{
+      const nextMap = {p1:"p2", p2:"p3", p3:"p4", p4:"diagnosis"};
+      go(nextMap[state.screen]);
+    });
+  }
+
+  // protocolo: acordeón + checkboxes de día
+  document.querySelectorAll("[data-toggle]").forEach(h=>{
+    h.addEventListener("click", ()=>{
+      const idx = h.dataset.toggle;
+      const body = document.getElementById("daybody_"+idx);
+      body.classList.toggle("open");
+    });
+  });
+  document.querySelectorAll("[data-daycheck]").forEach(cb=>{
+    cb.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      const idx = cb.dataset.daycheck;
+      const k = state.activeType+"_"+idx;
+      state.dayDone[k] = cb.checked;
+      saveState();
+      render();
+    });
+  });
+
+  // checklist semanal
+  document.querySelectorAll("[data-week]").forEach(cb=>{
+    cb.addEventListener("click", ()=>{
+      const idx = parseInt(cb.dataset.week);
+      state.checklistWeek[idx] = cb.checked;
+      state.checklistShowResult = false;
+      saveState();
+    });
+  });
+}
+
+render();
+</script>
+</body>
+</html>

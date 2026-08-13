@@ -243,6 +243,28 @@
 </header>
 
 <div class="wrap">
+  <div class="card" style="border:1.5px solid var(--dorado);">
+    <div class="eyebrow">Ya son tuyos</div>
+    <h2 style="margin-bottom:6px;">Tus 3 regalos</h2>
+    <p style="margin-bottom:6px;">Antes de arrancar, descargate estos tres contenidos de PECOL. Quedan guardados en tu celular para siempre.</p>
+
+    <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--borde);">
+      <div style="flex:0 0 30px;width:30px;height:30px;border-radius:50%;background:var(--dorado);color:var(--verde-oscuro);font-family:'Poppins',sans-serif;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;">1</div>
+      <div style="flex:1;font-weight:700;color:var(--verde-oscuro);font-size:14.5px;">El Tono Que Tu Perro Sí Entiende</div>
+      <a href="PECOL_Bonus1_ElTonoQueTuPerroSiEntiende.pdf" target="_blank" rel="noopener" style="font-size:13.5px;font-weight:700;color:var(--verde);white-space:nowrap;">Descargar</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--borde);">
+      <div style="flex:0 0 30px;width:30px;height:30px;border-radius:50%;background:var(--dorado);color:var(--verde-oscuro);font-family:'Poppins',sans-serif;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;">2</div>
+      <div style="flex:1;font-weight:700;color:var(--verde-oscuro);font-size:14.5px;">Postura de Líder, No de Jefe</div>
+      <a href="PECOL_Bonus2_PosturaDeLiderNoDeJefe.pdf" target="_blank" rel="noopener" style="font-size:13.5px;font-weight:700;color:var(--verde);white-space:nowrap;">Descargar</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--borde);">
+      <div style="flex:0 0 30px;width:30px;height:30px;border-radius:50%;background:var(--dorado);color:var(--verde-oscuro);font-family:'Poppins',sans-serif;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;">3</div>
+      <div style="flex:1;font-weight:700;color:var(--verde-oscuro);font-size:14.5px;">La Escalera del Éxito</div>
+      <a href="PECOL_Bonus3_LaEscaleraDelExito.pdf" target="_blank" rel="noopener" style="font-size:13.5px;font-weight:700;color:var(--verde);white-space:nowrap;">Descargar</a>
+    </div>
+  </div>
+
   <div class="progress" id="progress"></div>
   <div id="app"></div>
   <div class="footer-note">Tus respuestas y tu progreso se guardan solo en este dispositivo.</div>
@@ -265,18 +287,18 @@ const TYPES = {
     diagTitle:"{NOMBRE} tiene Ansiedad por Separación.",
     diagParrafos:[
       "Esto es lo que está pasando: {NOMBRE} no ladra para molestarte ni por maldad. Ladra porque, para él, que vos te vayas es una situación real de angustia: no sabe cuánto tiempo te vas a ir, no sabe si volvés, y su cuerpo reacciona como reacciona el de cualquiera frente a algo que le genera miedo: se activa, y esa activación sale como ladrido.",
-      "Muchas veces esto pasa porque, sin querer, {NOMBRE} aprendió a depender por completo de que estés ahí para sentirse tranquilo. Nadie le enseñó todavía que puede estar bien solo, incluso estando vos en casa, cerca de él pero sin estar encima. Ese es justamente el próximo paso: enseñarle que la calma no depende de tu presencia constante.",
+      "{NOMBRE}, como todo ser vivo, es un animal gregario que vive en manada y se relaciona a través de ella. Antiguamente esa manada estaba formada por otros perros, es decir, por su propia especie: ahí nació, creció y desarrolló su vida. Hoy su manada nos tiene a los humanos como parte de ella, y los sentimientos, las emociones y los instintos que antes se vivían entre perros, hoy los comparte con nosotros. Este comportamiento se profundizó en tiempos de la pandemia, cuando pasamos de estar pocas horas en casa a estar todo el día y meses enteros, lo que hizo la interacción mucho más estrecha. Por eso, sin querer, {NOMBRE} aprendió a depender por completo de que estés ahí para sentirse tranquilo. Nadie le enseñó todavía que puede estar bien solo, incluso estando vos en casa, cerca de él pero sin estar encima. Ese es justamente el próximo paso: enseñarle que la calma no depende de tu presencia constante.",
       "<strong>Por qué lo que probaste hasta ahora no funcionó:</strong> Si intentaste que la despedida sea \"silenciosa\" o evitar salir para no generarle angustia, es entendible, pero eso no le enseña a {NOMBRE} a estar tranquilo solo. Solo pospone el momento en el que tiene que aprenderlo. Y si lo retaste cuando ladraba al volver, {NOMBRE} no asoció el reto con \"no debí ladrar hace 3 horas\": asoció el reto con tu llegada, lo cual puede empeorar la ansiedad, no mejorarla.",
       "<strong>La buena noticia:</strong> la ansiedad por separación es uno de los comportamientos más estudiados y con mejor respuesta cuando se trabaja de forma gradual. No es magia ni es rápido, pero es un camino conocido, y en este protocolo te voy marcando exactamente qué camino seguir, paso a paso."
     ],
     antes:"La ansiedad por separación no se resuelve \"aguantando más tiempo solo cada vez\" de forma brusca. Eso es lo que la mayoría de la gente prueba sin querer, y es lo que la empeora. Se resuelve con desensibilización gradual: le enseñamos a {NOMBRE}, en dosis que él pueda tolerar sin angustiarse, que vos te vas y volvés, una y otra vez, hasta que su cuerpo aprende que no hay peligro real. Durante estos 7 días no buscamos que {NOMBRE} \"aguante\" largas ausencias: buscamos que construya la base de tranquilidad en ausencias cortas. Algo que ayuda en todo este proceso es que {NOMBRE} tenga un lugar propio: un rincón que sea sinónimo de paz, con su cucha y agua cerca.",
     days:[
       {titulo:"Día 1: Mostrar tu ausencia (sin salir de casa)", blocks:[
-        {lbl:"Qué hacer", txt:"Elegí un día normal. Si {NOMBRE} siempre está en el mismo ambiente que vos, hoy lo vas a dejar en otro espacio de la casa sin que te vea. Un buen momento es la hora de la comida: le servís su ración en un lugar donde vos no estés visible, cerrás la puerta y te quedás del otro lado sin que te vea ni te escuche. Cuando empiece a ladrar, abrís la puerta fuerte e inmediatamente, de manera que el ladrido se corte porque te ve. Lo calmás, le das tu orden de \"quedate\", y volvés a cerrar. Si vuelve a ladrar, repetís, un poco más firme. Hoy el tiempo a esperar en silencio es de 15 segundos."},
-        {lbl:"Qué NO hacer", txt:"No cortes el ejercicio antes de completar los 15 segundos de silencio: si lo dejás sin el final indicado, aprende justo lo contrario de lo que buscás. Mientras estás \"escondido\", quedate callado y quieto. Al premiar, que no sea muy efusivo: alcanza con una caricia tranquila y una voz calma."}
+        {lbl:"Qué hacer", txt:"Elegí un día normal. Si {NOMBRE} siempre está en el mismo ambiente que vos, hoy lo vas a dejar en otro espacio de la casa sin que te vea. Un buen momento es la hora de la comida: le servís su ración en un lugar donde vos no estés visible, cerrás la puerta y te quedás del otro lado sin que te vea ni te escuche. Cuando empiece a ladrar, abrís la puerta fuerte e inmediatamente, de manera que el ladrido se corte porque te ve. Lo calmás, le das tu orden de \"quedate\", y volvés a cerrar. Si vuelve a ladrar, repetís, un poco más firme. Hoy el tiempo a esperar en silencio es de 15 segundos. Lo importante y fundamental es interrumpir la energía del ladrido cuando recién está empezando, sin esperar a que sea evidente que {NOMBRE} ya está ladrando. Hacelo con una orden en tono firme: \"{NOMBRE}, no\"."},
+        {lbl:"Qué NO hacer", txt:"No cortes el ejercicio antes de completar los 15 segundos de silencio: si lo dejás sin el final bien enseñado, aprende justo lo contrario de lo que buscás. Mientras estás \"escondido\", quedate callado y quieto. Al premiar, que no sea muy efusivo: alcanza con una caricia tranquila y una voz calma."}
       ]},
       {titulo:"Día 2: Primeras \"salidas\" cortas", blocks:[
-        {lbl:"Qué hacer (5 minutos, 3 a 5 veces por día)", txt:"Sumale al ejercicio de ayer sonidos típicos de tu salida. Cerrás la puerta y, pasados los 15 segundos, hacé sonar las llaves de manera que te escuche. Si superó ese momento bien, dá pasos audibles como si caminaras hacia la salida, sin alejarte realmente. Si ladra dentro de 30 segundos, repetís la corrección hasta que deje de ladrar."},
+        {lbl:"Qué hacer (5 minutos, 3 a 5 veces por día)", txt:"Sumale al ejercicio de ayer los sonidos típicos de tu salida. Cerrás una puerta y caminás unos pasos en silencio, sin que {NOMBRE} te escuche. Pasados los 15 segundos, hacé sonar las llaves de manera que sí te escuche. Si superó ese momento bien, ahora caminá unos pasos a propósito audibles, como si te dirigieras hacia la salida, sin alejarte realmente. Si ladra dentro de 30 segundos, repetís la corrección hasta que deje de ladrar."},
         {lbl:"Qué NO hacer", txt:"Dejar el ejercicio mal enseñado, o hacerlo menos de 3 ni más de 5 veces en el día."},
         {lbl:"Ajuste", txt:"Si le está costando aprenderlo, puede ser que no estés siguiendo el paso a paso con la meticulosidad necesaria. El resultado de hoy es transitorio, pero necesita quedar bien cerrado."}
       ]},
@@ -291,14 +313,14 @@ const TYPES = {
       ]},
       {titulo:"Día 5: Introducir una rutina de calma", blocks:[
         {lbl:"Qué hacer (5 minutos antes de salir + salidas de 3-5 minutos)", txt:"Antes de cada salida de práctica, dale algo que lo mantenga ocupado y tranquilo, no algo que lo excite. La idea es asociar tu salida con \"empieza algo tranquilo para mí\", no con \"se termina la fiesta\"."},
-        {lbl:"Qué NO hacer", txt:"No uses este recurso solo el día que te vas por horas: usalo también en las salidas cortas de práctica."}
+        {lbl:"Qué NO hacer", txt:"No uses este recurso solo el día que te vas por horas: usalo también en las salidas cortas de práctica. Cuidado con la sobrealimentación en caso de que dejes su ración de comida, o con la sobreexcitación si dejás un juguete \"tranquilizador\"."}
       ]},
       {titulo:"Día 6: Salidas de 5 a 10 minutos", blocks:[
         {lbl:"Qué hacer", txt:"Repetí el esquema con ausencias de 5 a 10 minutos. Si podés ver cómo está {NOMBRE} durante la ausencia, usalo para confirmar en qué momento se calma."},
         {lbl:"Ajuste según lo que observes", txt:"Si se calma en los primeros 2 minutos, podés avanzar más rápido. Si tarda o no llega a calmarse en esos 10 minutos, quedate en este nivel unos días más: no hay apuro."}
       ]},
       {titulo:"Día 7: Consolidar y evaluar", blocks:[
-        {lbl:"Qué hacer", txt:"Repetí 2-3 salidas de 10 minutos, y evaluá con el checklist de la semana."},
+        {lbl:"Qué hacer", txt:"Repetí 2-3 salidas de 10 minutos, y evaluá con el checklist de la semana. Sé honesto con la autoevaluación: no ablandes ni subas la nota solo porque vos sos el educador y {NOMBRE} tu alumno preferido."},
         {lbl:"Cierre de la semana", txt:"Esta primera semana no busca que {NOMBRE} tolere una jornada laboral completa: busca reconstruir la confianza de que las salidas son seguras y predecibles."}
       ]}
     ],
@@ -309,7 +331,7 @@ const TYPES = {
       "¿Pudiste sostener el ritmo de práctica la mayoría de los días?"
     ],
     checklistBien:"Vas por buen camino. El siguiente paso natural es extender los tiempos de ausencia de forma gradual, siguiendo la misma lógica.",
-    checklistMal:"No es un fracaso: la ansiedad por separación tiene distintos niveles de intensidad, y algunos perros necesitan más repeticiones en cada escalón antes de subir. Esto es exactamente el tipo de ajuste que un seguimiento personalizado puede resolver mejor que un protocolo genérico de 7 días.",
+    checklistMal:"No es un fracaso: la ansiedad por separación tiene distintos niveles de intensidad, y algunos perros necesitan más repeticiones en cada escalón antes de subir (sugerencia: leé el Bonus 3, La Escalera del Éxito), o tal vez estés salteando algún paso de la rutina.",
     alertas:[
       "{NOMBRE} se lastima intentando salir o rompe puertas/ventanas de forma severa",
       "Hay signos de angustia extrema (salivación excesiva, jadeo intenso sin calor, temblores) incluso en ausencias muy cortas",
@@ -323,26 +345,26 @@ const TYPES = {
     nombre:"Territorial",
     diagTitle:"{NOMBRE} tiene un ladrido Territorial.",
     diagParrafos:[
-      "Esto es lo que está pasando: {NOMBRE} ve su casa como el espacio que tiene que proteger. Cuando pasa gente, otro perro, o hay un ruido de la calle, su sistema de alarma se activa. No es maldad ni es que \"sea nervioso\". Es un instinto de guardia real, pero descontrolado, sin un límite claro de cuándo parar.",
-      "<strong>Por qué lo que probaste hasta ahora no funcionó:</strong> Si lo retaste o le dijiste \"basta\" cuando ladraba al estímulo, tu voz elevada se sumó a la alarma en vez de calmarla. Para {NOMBRE}, en ese momento vos también estás \"ladrando\" junto a él. Confirma que hay algo para alertar, no le enseña que no hace falta.",
+      "Esto es lo que está pasando: {NOMBRE} ve su casa como el espacio que tiene que proteger. Cuando pasa gente, otro perro, o hay un ruido de la calle, su sistema de alarma se activa. No es maldad ni es que \"sea nervioso\". Es un instinto de guardia real, pero descontrolado, sin un límite claro de cuándo parar. Este comportamiento es muy notorio en perros de tamaño grande, en razas pensadas para guardia y/o defensa como el Pastor Alemán, Dobermann, Gran Danés, Pastor Belga Malinois, Bóxer, Rottweiler y otras. Vinieron a nuestras casas con la función de \"protegernos\", \"cuidarnos\" y \"alertarnos\".",
+      "<strong>Por qué lo que probaste hasta ahora no funcionó:</strong> Si lo retaste o le dijiste \"basta\" cuando ladraba al estímulo, tu voz elevada se sumó a la alarma en vez de calmarla. Para {NOMBRE}, en ese momento vos también estás \"ladrando\" junto a él. Confirma que hay algo para alertar, no le enseña que no hace falta. Una de las formas en que los perros aprenden es por simpatía: hacen lo mismo que otro integrante de la manada. Entonces, si vos estás \"ladrando\", para {NOMBRE} está perfecto: \"yo también ladro\".",
       "<strong>La buena noticia:</strong> el ladrido territorial responde muy bien cuando se trabaja la distancia al estímulo de forma progresiva, en vez de esperar que el perro \"aguante\" el estímulo de golpe."
     ],
     antes:"El ladrido territorial no se apaga pidiéndole al perro que ignore lo que ve. Se resuelve bajando la intensidad del estímulo (distancia, tiempo de exposición) hasta un punto donde {NOMBRE} puede notar el estímulo sin activarse del todo, y desde ahí construir calma de a poco. Para cambiar el foco de atención, llamalo siempre por su nombre, {NOMBRE}, de manera de desenfocarlo del estímulo que desencadena su ladrido.",
     days:[
       {titulo:"Día 1: Identificar el límite", blocks:[
         {lbl:"Qué hacer (10 minutos)", txt:"Llevá a {NOMBRE} cerca de una ventana o puerta desde donde vea la calle. Anotá a qué distancia del estímulo empieza a ladrar: ese es tu punto de partida, no el objetivo. Cuando empiece a ladrar, cambiale el foco de atención, y cuando se calle, felicitalo con caricias relajantes (caricias sí, palmaditas no)."},
-        {lbl:"Qué NO hacer", txt:"No lo expongas a propósito a la distancia más cercana para \"ver qué pasa\". El objetivo de hoy es solo observar."}
+        {lbl:"Qué NO hacer", txt:"No lo expongas a propósito a la distancia más cercana para \"ver qué pasa\". El objetivo de hoy es solo observar cuándo empieza a ladrar o qué estímulo externo inicia su comportamiento."}
       ]},
       {titulo:"Día 2: Bajar el volumen del entorno", blocks:[
-        {lbl:"Qué hacer (10 minutos)", txt:"Si tenés forma de tapar parcialmente la vista a la calle (cortina, papel esmerilado, mover un mueble), hacelo. Si no podés taparlo, cambiá a {NOMBRE} de ambiente."},
-        {lbl:"Por qué", txt:"Cada vez que {NOMBRE} ladra y \"gana\" (el estímulo se va), refuerza el hábito. Bajar la exposición general reduce esas repeticiones."}
+        {lbl:"Qué hacer (10 minutos)", txt:"Si tenés forma de tapar parcialmente la vista a la calle (cortina, papel esmerilado, mover un mueble), hacelo. Si no podés taparlo, cambiá a {NOMBRE} de ambiente, de tal manera que no tenga el estímulo necesario. Esto es muy posible cuando el estímulo es algo que {NOMBRE} ve, pero si el estímulo es auditivo, colocale un poco de algodón en los oídos para que no esté tan sensible a ese estímulo sonoro."},
+        {lbl:"Por qué", txt:"Cada vez que {NOMBRE} ladra y \"gana\" (el estímulo se va), refuerza el hábito o reacción de ladrar. Bajar la exposición general reduce esas repeticiones."}
       ]},
       {titulo:"Día 3: Practicar a distancia segura", blocks:[
         {lbl:"Qué hacer (10 minutos)", txt:"Pedile a alguien que pase caminando a la distancia donde {NOMBRE} todavía no ladra (la del Día 1). Cuando lo note y se mantenga tranquilo, dale un premio de inmediato: el mejor premio es una caricia relajante."},
         {lbl:"Qué NO hacer", txt:"No acortes la distancia todavía, aunque parezca que \"está tranquilo, probemos más cerca\". Repetí varias veces a la misma distancia antes de avanzar."}
       ]},
       {titulo:"Día 4: Enseñar a mirarte a vos", blocks:[
-        {lbl:"Qué hacer (10 minutos)", txt:"En el mismo ejercicio del Día 3, cuando {NOMBRE} note el estímulo, decí \"{NOMBRE}\". Si te mira a vos en vez de fijarse en el estímulo, premiá ahí mismo."},
+        {lbl:"Qué hacer (10 minutos)", txt:"En el mismo ejercicio del Día 3, cuando {NOMBRE} note el estímulo, decí \"{NOMBRE}\". Esto lo hacemos para cambiar la dirección de la energía de {NOMBRE}, para que en vez de ladrar te mire a vos. Para felicitarlo y premiarlo, ponete en posición de juego (leé el Bonus 2: Postura de Líder), llamalo para que venga hacia vos, dale las palmaditas correspondientes y cambialo de ambiente. Por ejemplo: si estaba en el portón ladrando, después de felicitarlo lo hacés entrar a la casa."},
         {lbl:"Por qué", txt:"Le estás dando una alternativa concreta al ladrido: mirarte a vos también tiene recompensa."}
       ]},
       {titulo:"Día 5: Acortar la distancia de a poco", blocks:[
@@ -350,11 +372,11 @@ const TYPES = {
         {lbl:"Ajuste", txt:"No hay problema en quedarte en la misma distancia varios días si hace falta. Forzar el avance es lo que rompe el progreso."}
       ]},
       {titulo:"Día 6: Practicar en situación real", blocks:[
-        {lbl:"Qué hacer (10-15 minutos)", txt:"Durante un paseo, practicá el mismo ejercicio de mirarte a vos cuando aparezca otro perro o una persona. Prestá atención a los alrededores, anticipando toda posible interacción."},
+        {lbl:"Qué hacer (10-15 minutos)", txt:"Durante un paseo, practicá el mismo ejercicio de mirarte a vos cuando aparezca otro perro o una persona. Prestá atención a los alrededores, anticipando toda posible interacción. Este paseo conviene hacerlo siempre en la misma zona, como si fuera un aula de estudio: ya sabés qué tipo de estímulos vas a encontrar, y al exponer a {NOMBRE} vas haciendo las correcciones y felicitaciones indicadas para reforzar su nuevo hábito."},
         {lbl:"Por qué", txt:"El objetivo final no es que se quede tranquilo mirando por la ventana, es que pueda manejar la misma situación en la calle."}
       ]},
       {titulo:"Día 7: Consolidar y evaluar", blocks:[
-        {lbl:"Qué hacer", txt:"Repetí el ejercicio de la ventana o puerta y el de la calle, y evaluá con el checklist de la semana."},
+        {lbl:"Qué hacer", txt:"Repetí el ejercicio de la ventana o puerta y el de la calle, y evaluá con el checklist de la semana. Sé honesto con la autoevaluación: de nada sirve un buen resultado ficticio frente a una realidad mal encaminada."},
         {lbl:"Cierre de la semana", txt:"Esta semana no busca eliminar el instinto de alerta, eso es normal y sano. Busca que {NOMBRE} tenga una alternativa a la reacción explosiva."}
       ]}
     ],
@@ -365,7 +387,7 @@ const TYPES = {
       "¿Sostuviste la práctica la mayoría de los días?"
     ],
     checklistBien:"Vas bien encaminado. El paso siguiente es seguir acortando distancia de a poco y sumar más tipos de estímulo, de a uno o dos por vez.",
-    checklistMal:"Puede ser que el punto de partida elegido el Día 1 haya sido más cercano de lo que {NOMBRE} toleraba. Es normal cuando el umbral de reacción es muy bajo, y es justo el tipo de ajuste fino que un seguimiento personalizado resuelve mejor.",
+    checklistMal:"Puede ser que el punto de partida elegido el Día 1 haya sido más cercano de lo que {NOMBRE} toleraba. Es normal cuando el umbral de reacción es muy bajo, y es justo el tipo de ajuste fino que una buena y honesta autoevaluación ayuda a mejorar.",
     alertas:[
       "{NOMBRE} reacciona con la misma intensidad sin importar la distancia, incluso a estímulos muy lejanos",
       "Hay intentos de morder la ventana, la puerta, o lastimarse en el intento de llegar al estímulo",
@@ -377,11 +399,11 @@ const TYPES = {
   aburrimiento: {
     key:"aburrimiento",
     nombre:"Aburrimiento / Exceso de energía",
-    diagTitle:"{NOMBRE} ladra por Aburrimiento o Exceso de Energía.",
+    diagTitle:"{NOMBRE} ladra por Aburrimiento y/o Exceso de Energía.",
     diagParrafos:[
-      "Esto es lo que está pasando: {NOMBRE} tiene mucha energía física o mental acumulada que no encuentra por dónde salir, y el ladrido es la válvula de escape. No pasa por maldad ni por capricho. Es como una olla a presión sin válvula: la energía no desaparece porque no la dejes salir, se va acumulando hasta que encuentra la forma de escaparse, y en {NOMBRE}, esa forma es el ladrido.",
+      "Esto es lo que está pasando: {NOMBRE} tiene mucha energía física o mental acumulada que no encuentra por dónde salir, y el ladrido es la válvula de escape. No pasa por maldad ni por capricho. Es como una olla a presión sin válvula: la energía no desaparece porque no la dejes salir, se va acumulando hasta que encuentra la forma de escaparse, y en {NOMBRE}, esa forma es el ladrido. Vas a necesitar darle más actividad física y mental. Mucho cuidado con el exceso de estas actividades, porque puede llevarte a comportamientos excesivos no deseados. No se trata de más tiempo de actividad, sino de mejor calidad de actividad: le enseñás a gastar energía y también a estar tranquilo.",
       "<strong>Por qué lo que probaste hasta ahora no funcionó:</strong> Si le diste más juguetes o más paseos y siguió igual, es porque el problema no es solo la cantidad de movimiento, es el tipo de estímulo. Un paseo apurado, sin que {NOMBRE} pueda olfatear ni hacer sus necesidades con calma, gasta menos energía mental de la que parece.",
-      "<strong>La buena noticia:</strong> este es de los ladridos más fáciles de mejorar rápido, porque no depende de cambiar una emoción compleja, depende de reorganizar la rutina diaria, y con constancia semanal se soluciona."
+      "La buena noticia: este es de los ladridos más fáciles de mejorar rápido, porque no depende de cambiar una emoción compleja, depende de reorganizar la rutina diaria. Con constancia, en pocas semanas ya vas a empezar a notar cambios, aunque consolidar el hábito del todo puede llevar más tiempo."
     ],
     antes:"No se trata de agregar más horas de paseo, se trata de agregar el tipo correcto de actividad: olfativa, mental y de resolución de problemas, combinada con descanso real.",
     days:[
@@ -395,23 +417,23 @@ const TYPES = {
       ]},
       {titulo:"Día 3: Introducir un juguete de búsqueda de comida", blocks:[
         {lbl:"Qué hacer (10 minutos)", txt:"Dale parte de su comida diaria en un juguete que lo obligue a trabajar para conseguirla, en vez de servirla directo en el plato. Por ejemplo: poné su ración detrás de un bidón de agua vacío para que tenga que correrlo."},
-        {lbl:"Por qué", txt:"Resolver un problema para conseguir comida es de las actividades que más energía mental consume. Sin necesidad de buscar su sustento, un perro tiene energía de sobra que después se desborda en forma de ladrido."}
+        {lbl:"Por qué", txt:"Resolver un problema para conseguir comida es de las actividades que más energía mental consume. Sin necesidad de buscar su sustento, un perro tiene energía de sobra que después se desborda en forma de ladrido. Cuando el perro ancestral tenía que procurarse su propia comida, pasaba muchas horas en esa tarea. Hoy la tiene resuelta, y esa energía le sobra por todos lados."}
       ]},
       {titulo:"Día 4: Sesión corta de entrenamiento", blocks:[
-        {lbl:"Qué hacer (5-10 minutos)", txt:"Practicá un ejercicio simple (sentado, quieto, o algo nuevo) con premios. No importa el ejercicio en sí, importa que {NOMBRE} tenga que pensar y prestar atención."},
-        {lbl:"Por qué", txt:"El entrenamiento cansa mentalmente distinto al juego físico. Es de los recursos más subestimados para bajar el aburrimiento."}
+        {lbl:"Qué hacer (5-10 minutos)", txt:"Practicá un ejercicio simple (sentado, quieto, o algo nuevo) con premios. No importa el ejercicio en sí, importa que {NOMBRE} tenga que pensar y prestar atención. A medida que vayas practicando el mismo ejercicio, vas a ir sumando un beneficio más para su educación. Practicá siempre con el mismo ejercicio, no cambies de ejercicio día a día: te vas a frustrar vos, tu energía se altera, y en realidad lo que buscamos es que {NOMBRE} aprenda a controlar la suya."},
+        {lbl:"Por qué", txt:"El entrenamiento de una habilidad cansa mentalmente distinto al juego físico. Es de los recursos más subestimados para bajar el aburrimiento."}
       ]},
       {titulo:"Día 5: Armar una rutina fija de actividad y descanso", blocks:[
         {lbl:"Qué hacer", txt:"Con lo que probaste los días anteriores, armá un esquema diario: paseo de olfato, un momento de juego mental, un momento de entrenamiento corto, y bloques claros de descanso sin estímulo. Que no dure más de 20 a 30 minutos en total."},
-        {lbl:"Por qué", txt:"Un perro que sabe cuándo toca actividad y cuándo toca calma se regula mejor que uno con una rutina impredecible o excesiva."}
+        {lbl:"Por qué", txt:"Un perro que sabe cuándo toca actividad y cuándo toca calma aprende a regular su energía y a usarla en el momento y la situación que corresponde, y se regula mejor que uno con una rutina impredecible o excesiva. De paso, tener una rutina clara con {NOMBRE} también te ayuda a vos a organizar mejor tu propio tiempo."}
       ]},
       {titulo:"Día 6: Detectar los momentos de mayor ladrido", blocks:[
         {lbl:"Qué hacer", txt:"Anotá en qué momento del día ladra más por aburrimiento. Sumá una actividad de las de arriba justo antes de ese horario."},
         {lbl:"Por qué", txt:"Adelantarte al momento de mayor ladrido con una actividad es más efectivo que reaccionar después de que ya empezó."}
       ]},
       {titulo:"Día 7: Consolidar y evaluar", blocks:[
-        {lbl:"Qué hacer", txt:"Sostené la rutina armada el Día 5 y evaluá con el checklist de la semana."},
-        {lbl:"Cierre de la semana", txt:"Esta semana no busca agotar a {NOMBRE}, busca darle una salida ordenada a la energía que ya tiene. Si este ladrido no se canaliza, puede derivar en un trastorno de conducta más serio con el tiempo."}
+        {lbl:"Qué hacer", txt:"Sostené la rutina armada el Día 5 y evaluá con el checklist de la semana. Sé honesto con la autoevaluación: de nada sirve un buen resultado ficticio frente a una realidad mal encaminada."},
+        {lbl:"Cierre de la semana", txt:"Esta semana no busca agotar a {NOMBRE}, busca darle una salida ordenada a la energía que ya tiene. El ladrido por aburrimiento o por exceso de energía lleva bastante tiempo reeducarlo; con constancia lo vas a lograr (leé el Bonus 3: La Escalera del Éxito)."}
       ]}
     ],
     checklist:[
@@ -421,7 +443,7 @@ const TYPES = {
       "¿Sostuviste la rutina la mayoría de los días?"
     ],
     checklistBien:"Vas bien. El siguiente paso es afianzar la rutina y sumar más variedad de actividades mentales.",
-    checklistMal:"Puede que el aburrimiento esté mezclado con otro motivo (ansiedad, territorial), lo cual es común. Conviene revisarlo con más detalle en un seguimiento personalizado.",
+    checklistMal:"Puede que el aburrimiento esté mezclado con otro motivo (ansiedad, territorial), lo cual es común. Repasá con calma si estás sosteniendo bien cada parte de la rutina antes de sumar algo nuevo.",
     alertas:[
       "El ladrido por aburrimiento no baja nada después de una semana sosteniendo la rutina completa",
       "Aparecen otras conductas junto al ladrido: destrozar cosas, girar en círculos, lamerse en exceso",
@@ -435,7 +457,7 @@ const TYPES = {
     nombre:"Excitación",
     diagTitle:"{NOMBRE} ladra por Excitación.",
     diagParrafos:[
-      "Esto es lo que está pasando: {NOMBRE} no tiene todavía la capacidad de regular una emoción positiva muy intensa. Cuando llega una visita o empieza el juego, la alegría lo desborda, y el ladrido es la forma en la que ese desborde sale. No es mala educación, es que nadie le enseñó todavía cómo estar contento sin perder el control.",
+      "Esto es lo que está pasando: {NOMBRE} no tiene todavía la capacidad de regular una emoción positiva muy intensa. Cuando llega una visita o empieza el juego, la alegría lo desborda, y el ladrido es la forma en la que ese desborde sale. No es mala educación, es que nadie le enseñó todavía a cómo estar contento sin perder el control. Este desborde de emoción lo podés ver cuando llegás a casa después de trabajar, o cuando llegan visitas a casa. Es básicamente una cuestión de energías desbordadas nuestras, de los humanos, que ellos imitan. Por ejemplo: cuando recibimos gente en casa, ¿cómo saludamos? Con un tono de voz más fuerte, a los besos, a los abrazos. Eso mismo hace {NOMBRE}: ¿cómo? Ladrando, saltando sobre nosotros y los invitados. Y lo mismo sucede cuando llegás vos a casa.",
       "<strong>Por qué lo que probaste hasta ahora no funcionó:</strong> Si lo ignoraste hasta que se calmara, es una idea en la dirección correcta, pero probablemente faltó constancia o el resto del contexto (la visita, tu propio entusiasmo) seguía alimentando la excitación mientras tanto.",
       "<strong>La buena noticia:</strong> la excitación se regula enseñando una rutina clara de qué hacer en esos momentos, no reprimiendo la alegría de {NOMBRE}."
     ],
@@ -449,15 +471,15 @@ const TYPES = {
         {lbl:"Qué NO hacer", txt:"No dejes que la visita salude apenas entra, aunque {NOMBRE} \"se vea contento\". Ese saludo inmediato es lo que refuerza la excitación."}
       ]},
       {titulo:"Día 3: Enseñar sentado como forma de saludo", blocks:[
-        {lbl:"Qué hacer (10 minutos)", txt:"Practicá que {NOMBRE} se siente para recibir el saludo, primero con vos, después con la visita del Día 2. Si se para o ladra, lo volvés a sentar y la visita deja de prestarle atención hasta que se calme."},
+        {lbl:"Qué hacer (10 minutos)", txt:"Practicá que {NOMBRE} se siente para recibir el saludo, primero con vos, después con la visita del Día 2. Si se para o ladra, lo volvés a sentar y la visita deja de prestarle atención hasta que se calme. Siempre tenelo a {NOMBRE} sujeto con correa."},
         {lbl:"Por qué", txt:"Le das una acción concreta: sentarse abre la puerta al saludo, pararse o ladrar la cierra."}
       ]},
       {titulo:"Día 4: Simular la llegada sin que sea real", blocks:[
-        {lbl:"Qué hacer (10 minutos)", txt:"Tocá el timbre vos mismo, o golpeá la puerta, varias veces a lo largo del día sin que después entre nadie."},
+        {lbl:"Qué hacer (10 minutos)", txt:"Tocá el timbre vos mismo, o golpeá la puerta, varias veces a lo largo del día sin que después entre nadie. Cuando empiece a ladrar, llamalo y ordenale: \"{NOMBRE}, tranquilo\"."},
         {lbl:"Por qué", txt:"Si el timbre siempre significa excitación máxima, es un disparador difícil de manejar. Bajarle intensidad al sonido en sí ayuda mucho."}
       ]},
       {titulo:"Día 5: Practicar con una visita real, de baja exigencia", blocks:[
-        {lbl:"Qué hacer (10-15 minutos)", txt:"Repetí el ejercicio del Día 2 y 3 con una visita real, alguien con quien {NOMBRE} ya esté algo acostumbrado."},
+        {lbl:"Qué hacer (10-15 minutos)", txt:"Repetí el ejercicio del Día 2 y 3 con una visita real, alguien con quien {NOMBRE} ya esté algo acostumbrado. Acordate de usar collar y correa."},
         {lbl:"Ajuste", txt:"Si {NOMBRE} no logra calmarse en ningún momento, la próxima vez elegí una visita todavía más neutra."}
       ]},
       {titulo:"Día 6: Subir la dificultad de a poco", blocks:[
@@ -465,8 +487,8 @@ const TYPES = {
         {lbl:"Por qué", txt:"El objetivo es que la calma en el saludo se sostenga incluso cuando la emoción de base es más alta."}
       ]},
       {titulo:"Día 7: Consolidar y evaluar", blocks:[
-        {lbl:"Qué hacer", txt:"Repetí el ejercicio completo una vez más y evaluá con el checklist de la semana."},
-        {lbl:"Cierre de la semana", txt:"Esta semana no apunta a que {NOMBRE} deje de alegrarse con las visitas, apunta a que tenga una forma clara de expresar esa alegría sin que se vuelva descontrolada."}
+        {lbl:"Qué hacer", txt:"Repetí el ejercicio completo una vez más y evaluá con el checklist de la semana. Sé honesto con la autoevaluación: de nada sirve un buen resultado ficticio frente a una realidad mal encaminada."},
+        {lbl:"Cierre de la semana", txt:"Esta semana no apunta a que {NOMBRE} deje de alegrarse con las visitas, apunta a que tenga una forma clara de expresar esa alegría sin que se vuelva descontrolada. mediante tu supervisión controlada, con collar y correa, para que deje de saltar sobre el o los invitados."}
       ]}
     ],
     checklist:[
@@ -475,8 +497,8 @@ const TYPES = {
       "¿El ejercicio del timbre simulado bajó la intensidad de la reacción?",
       "¿Pudiste practicar con al menos una visita real?"
     ],
-    checklistBien:"Vas por buen camino. El siguiente paso es subir la dificultad con visitas más estimulantes y contextos nuevos.",
-    checklistMal:"Puede ser que el nivel de excitación de {NOMBRE} necesite pasos intermedios más chicos entre cada ejercicio. Es un ajuste que un seguimiento personalizado puede afinar mejor.",
+    checklistBien:"Vas por buen camino. El siguiente paso es subir la dificultad con visitas más estimulantes y contextos nuevos. Leé el Bonus 3: La Escalera del Éxito.",
+    checklistMal:"Puede ser que el nivel de excitación de {NOMBRE} necesite pasos intermedios más chicos entre cada ejercicio. Tal vez sea conveniente \"ajustar el tamaño del escalón\".",
     alertas:[
       "La excitación deriva en mordidas de juego fuertes o incontrolables, incluso sin intención de lastimar",
       "{NOMBRE} no logra calmarse en ningún momento, ni con la visita más neutra posible",

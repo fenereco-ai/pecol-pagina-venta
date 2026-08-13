@@ -555,7 +555,14 @@ function loadState(){
 function saveState(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 let state = loadState();
 
-function go(screen){ state.screen = screen; saveState(); render(); window.scrollTo(0,0); }
+function go(screen){
+  state.screen = screen;
+  saveState();
+  render();
+  const anchor = document.getElementById('progress');
+  if(anchor){ anchor.scrollIntoView({block:'start'}); }
+  else { window.scrollTo(0,0); }
+}
 
 /* ============ LOGIC ============ */
 function computeDiagnosis(){

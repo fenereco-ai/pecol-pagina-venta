@@ -251,17 +251,17 @@
     <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--borde);">
       <div style="flex:0 0 30px;width:30px;height:30px;border-radius:50%;background:var(--dorado);color:var(--verde-oscuro);font-family:'Poppins',sans-serif;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;">1</div>
       <div style="flex:1;font-weight:700;color:var(--verde-oscuro);font-size:14.5px;">El Tono Que Tu Perro Sí Entiende</div>
-      <a href="PECOL_Bonus1_ElTonoQueTuPerroSiEntiende.pdf" target="_blank" rel="noopener" style="font-size:13.5px;font-weight:700;color:var(--verde);white-space:nowrap;">Descargar</a>
+      <a href="PECOL_Bonus1_ElTonoQueTuPerroSiEntiende.pdf" download="PECOL_Bonus1_ElTonoQueTuPerroSiEntiende.pdf" style="font-size:13.5px;font-weight:700;color:var(--verde);white-space:nowrap;">Descargar</a>
     </div>
     <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--borde);">
       <div style="flex:0 0 30px;width:30px;height:30px;border-radius:50%;background:var(--dorado);color:var(--verde-oscuro);font-family:'Poppins',sans-serif;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;">2</div>
       <div style="flex:1;font-weight:700;color:var(--verde-oscuro);font-size:14.5px;">Postura de Líder, No de Jefe</div>
-      <a href="PECOL_Bonus2_PosturaDeLiderNoDeJefe.pdf" target="_blank" rel="noopener" style="font-size:13.5px;font-weight:700;color:var(--verde);white-space:nowrap;">Descargar</a>
+      <a href="PECOL_Bonus2_PosturaDeLiderNoDeJefe.pdf" download="PECOL_Bonus2_PosturaDeLiderNoDeJefe.pdf" style="font-size:13.5px;font-weight:700;color:var(--verde);white-space:nowrap;">Descargar</a>
     </div>
     <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--borde);">
       <div style="flex:0 0 30px;width:30px;height:30px;border-radius:50%;background:var(--dorado);color:var(--verde-oscuro);font-family:'Poppins',sans-serif;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;">3</div>
       <div style="flex:1;font-weight:700;color:var(--verde-oscuro);font-size:14.5px;">La Escalera del Éxito</div>
-      <a href="PECOL_Bonus3_LaEscaleraDelExito.pdf" target="_blank" rel="noopener" style="font-size:13.5px;font-weight:700;color:var(--verde);white-space:nowrap;">Descargar</a>
+      <a href="PECOL_Bonus3_LaEscaleraDelExito.pdf" download="PECOL_Bonus3_LaEscaleraDelExito.pdf" style="font-size:13.5px;font-weight:700;color:var(--verde);white-space:nowrap;">Descargar</a>
     </div>
   </div>
 
@@ -697,6 +697,7 @@ function screenDiagnosis(){
 
   if(state.salud==="Sí"){
     return `
+      <div class="back-link" onclick="goBack()">‹ Volver</div>
       <div class="diag-box">
         <h2>${withName(type.diagTitle.replace("{NOMBRE}", nombre))}</h2>
         <p>Es lo que indican tus respuestas. Pero antes de mostrarte el protocolo estándar, hay algo que preferimos mirar con más cuidado.</p>
@@ -710,6 +711,7 @@ function screenDiagnosis(){
   }
 
   return `
+    <div class="back-link" onclick="goBack()">‹ Volver</div>
     <div class="diag-box">
       <h2>${withName(type.diagTitle.replace("{NOMBRE}", nombre))}</h2>
       ${type.diagParrafos.map(p=>`<p>${withName(p)}</p>`).join("")}

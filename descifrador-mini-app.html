@@ -603,7 +603,7 @@ function screenWelcome(){
     <div class="card">
       <div class="eyebrow">Descifrador de Ladridos</div>
       <h2>Vamos a entender por qué ladra tu perro.</h2>
-      <p>Son 4 preguntas simples. Al final vas a saber exactamente qué tipo de ladrido tiene y qué ruta de 7 días le corresponde.</p>
+      <p>Son 4 preguntas simples. En cada una vas a elegir una sola opción: la que más se repite con tu perro. Al final vas a saber exactamente qué tipo de ladrido tiene y qué ruta de 7 días le corresponde.</p>
       <button class="btn" onclick="go('form')">Empezar</button>
     </div>
   `;
@@ -666,6 +666,7 @@ function screenPregunta(num, titulo, opts, stateKey, allowSub){
     <div class="card">
       <div class="eyebrow">Pregunta ${num} de 4</div>
       <h2>${titulo}</h2>
+      <p style="margin-top:-8px;color:#5B6862;font-size:13.5px;">Para que el diagnóstico sea preciso, elegí una sola opción de las que se detallan abajo.</p>
       <div id="opciones">${choices}</div>
       <button class="btn" id="btnSiguiente" ${selected?"":"disabled"}>Siguiente</button>
     </div>

@@ -148,13 +148,22 @@
   .btn.whatsapp:hover{background:#1DA851;}
 
   .back-link{
-    display:inline-block;
-    margin-bottom:14px;
-    font-size:13.5px;
-    color:var(--texto-suave);
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-bottom:16px;
+    padding:7px 15px;
+    border-radius:20px;
+    background:#F2F6F4;
+    border:1.5px solid var(--verde);
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+    font-weight:700;
+    color:var(--verde);
     cursor:pointer;
-    text-decoration:underline;
+    text-decoration:none;
   }
+  .back-link:hover{ background:var(--verde); color:#fff; }
 
   .diag-box{
     background:linear-gradient(135deg, var(--verde-oscuro), var(--verde));
@@ -626,7 +635,7 @@ function screenForm(){
         ${radioPair("ninos", state.ninos)}
       </div>
 
-      <label>¿Tiene alguna condición de salud diagnosticada (neurológica, crónica, en tratamiento)?</label>
+      <label>¿Tu perro tiene alguna condición de salud diagnosticada (neurológica, crónica, en tratamiento)?</label>
       <div class="radio-row" id="f_salud">
         ${radioPair("salud", state.salud)}
       </div>
@@ -662,7 +671,7 @@ function screenPregunta(num, titulo, opts, stateKey, allowSub){
     return `<div class="choice ${isSel?"selected":""}" data-letra="${o.letra}">${o.txt}${sub}</div>`;
   }).join("");
   return `
-    <div class="back-link" onclick="goBack()">‹ Volver</div>
+    <div class="back-link" onclick="goBack()">← Volver</div>
     <div class="card">
       <div class="eyebrow">Pregunta ${num} de 4</div>
       <h2>${titulo}</h2>
@@ -698,7 +707,7 @@ function screenDiagnosis(){
 
   if(state.salud==="Sí"){
     return `
-      <div class="back-link" onclick="goBack()">‹ Volver</div>
+      <div class="back-link" onclick="goBack()">← Volver</div>
       <div class="diag-box">
         <h2>${withName(type.diagTitle.replace("{NOMBRE}", nombre))}</h2>
         <p>Es lo que indican tus respuestas. Pero antes de mostrarte el protocolo estándar, hay algo que preferimos mirar con más cuidado.</p>
@@ -712,7 +721,7 @@ function screenDiagnosis(){
   }
 
   return `
-    <div class="back-link" onclick="goBack()">‹ Volver</div>
+    <div class="back-link" onclick="goBack()">← Volver</div>
     <div class="diag-box">
       <h2>${withName(type.diagTitle.replace("{NOMBRE}", nombre))}</h2>
       ${type.diagParrafos.map(p=>`<p>${withName(p)}</p>`).join("")}

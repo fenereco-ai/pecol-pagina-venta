@@ -542,7 +542,8 @@ const P3_OPTS = [
   {letra:"D", txt:"Ignorarlo hasta que se calme, pero sigue ladrando igual en cada visita"}
 ];
 const P4_OPTS = [
-  {letra:"E", txt:"Hace poco (semanas): antes no lo hacía o recién lo adopté"},
+  {letra:"E", txt:"Empezó hace poco (semanas), pero mi perro ya vivía conmigo desde antes"},
+  {letra:"H", txt:"Lo adopté hace poco y ya vino con este comportamiento"},
   {letra:"F", txt:"Hace varios meses"},
   {letra:"G", txt:"Desde siempre / desde que lo tengo"}
 ];
@@ -704,7 +705,9 @@ function screenDiagnosis(){
 
   let tono = "";
   if(state.p4==="E"){
-    tono = `<p>Como esto empezó hace poco, es un buen momento para actuar: cuanto antes lo trabajes, más fácil se corrige.</p>`;
+    tono = `<p>Como esto es un cambio reciente, vale la pena pensar también qué cambió últimamente en la rutina de ${nombre}, además de trabajar el protocolo: cuanto antes lo trabajes, más fácil se corrige.</p>`;
+  } else if(state.p4==="H"){
+    tono = `<p>Recién se están conociendo. Es el mejor momento para arrancar bien, desde la base, antes de que este comportamiento se instale como hábito.</p>`;
   } else if(state.p4==="F" || state.p4==="G"){
     tono = `<p>No es tu culpa que esto no se haya resuelto antes. Ahora vamos a hacerlo bien, paso a paso.</p>`;
   }
@@ -730,7 +733,10 @@ function screenDiagnosis(){
       <div class="card" style="border:1.5px solid var(--dorado);">
         <div class="eyebrow">Tu protocolo de 7 días</div>
         <h2 style="font-size:19px;">Ya sabés por qué ladra ${nombre}. Ahora viene la parte que lo soluciona.</h2>
-        <p>Este diagnóstico es gratis. La ruta de 7 días con los ejercicios exactos para ${nombre}, ya teniendo en cuenta tus respuestas, se desbloquea con tu compra — junto con 3 regalos extra de PECOL.</p>
+        <p>Este diagnóstico es gratis. La ruta de 7 días con los ejercicios exactos para ${nombre}, ya teniendo en cuenta tus respuestas, se desbloquea con tu compra, junto con 3 regalos más de PECOL:</p>
+        <p style="font-size:14px;margin:0 0 4px;"><strong>El Tono Que Tu Perro Sí Entiende</strong> — cómo hablarle para que te entienda.</p>
+        <p style="font-size:14px;margin:0 0 4px;"><strong>Postura de Líder, No de Jefe</strong> — lo que tu cuerpo le dice sin que hables.</p>
+        <p style="font-size:14px;margin:0 0 14px;"><strong>La Escalera del Éxito</strong> — el método paso a paso para enseñarle cualquier cosa.</p>
         <p style="font-family:'Poppins',sans-serif;font-weight:800;color:var(--verde-oscuro);font-size:20px;margin-bottom:4px;">${PRECIO_TEXTO} <span style="font-weight:600;font-size:13.5px;color:var(--texto-suave);">pago único</span></p>
         <a class="btn" href="${MP_LINK}">Quiero el protocolo completo de ${nombre}</a>
         <p style="font-size:12.5px;color:var(--texto-suave);margin-top:10px;margin-bottom:0;">Pagás con Mercado Pago y volvés directo acá, con todo ya desbloqueado.</p>

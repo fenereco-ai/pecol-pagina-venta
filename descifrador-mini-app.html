@@ -282,6 +282,8 @@
 <script>
 /* ============ CONFIG ============ */
 const WHATSAPP_NUMERO = "5492615171066";
+const MP_LINK = "https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=163521387-86a63062-71bb-43e2-b39d-dc1845455028";
+const PRECIO_TEXTO = "$37.000";
 
 function waLink(mensaje){
   return "https://wa.me/" + WHATSAPP_NUMERO + "?text=" + encodeURIComponent(mensaje);
@@ -558,7 +560,8 @@ function loadState(){
     nombre:"", email:"", ninos:null, salud:null, patio:null,
     p1:null, p1sub:[], p2:null, p3:null, p4:null,
     checklistWeek:[false,false,false,false],
-    dayDone:{}
+    dayDone:{},
+    paid:false
   };
 }
 function saveState(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
@@ -720,6 +723,19 @@ function screenDiagnosis(){
     `;
   }
 
+  const desbloqueo = state.paid
+    ? `<button class="btn" onclick="startProtocol('${typeKey}')">Ver mi protocolo de 7 días</button>`
+    : `
+      <div class="card" style="border:1.5px solid var(--dorado);">
+        <div class="eyebrow">Tu protocolo de 7 días</div>
+        <h2 style="font-size:19px;">Ya sabemos por qué ladra ${nombre}. Ahora viene la parte que lo soluciona.</h2>
+        <p>Este diagnóstico es gratis. La ruta de 7 días con los ejercicios exactos para ${nombre}, ya teniendo en cuenta todo lo que nos contaste, se desbloquea con tu compra.</p>
+        <p style="font-family:'Poppins',sans-serif;font-weight:800;color:var(--verde-oscuro);font-size:20px;margin-bottom:4px;">${PRECIO_TEXTO} <span style="font-weight:600;font-size:13.5px;color:var(--texto-suave);">pago único</span></p>
+        <a class="btn" href="${MP_LINK}">Quiero el protocolo completo de ${nombre}</a>
+        <p style="font-size:12.5px;color:var(--texto-suave);margin-top:10px;margin-bottom:0;">Pagás con Mercado Pago y volvés directo acá, con tu protocolo ya desbloqueado.</p>
+      </div>
+    `;
+
   return `
     <div class="back-link" onclick="goBack()">← Volver</div>
     <div class="diag-box">
@@ -728,7 +744,7 @@ function screenDiagnosis(){
     </div>
     ${tono}
     ${extraNotas}
-    <button class="btn" onclick="startProtocol('${typeKey}')">Ver mi protocolo de 7 días</button>
+    ${desbloqueo}
   `;
 }
 
@@ -928,6 +944,23 @@ function attachHandlers(){
   });
 }
 
+function checkPaymentReturn(){
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get("collection_status") || params.get("status");
+  if(status === "approved"){
+    state.paid = true;
+    const cleanUrl = window.location.origin + window.location.pathname;
+    window.history.replaceState({}, document.title, cleanUrl);
+    if(state.p1 && state.p2){
+      const diag = computeDiagnosis();
+      state.activeType = diag.typeKey;
+      state.screen = "protocol";
+    }
+    saveState();
+  }
+}
+
+checkPaymentReturn();
 render();
 </script>
 </body>

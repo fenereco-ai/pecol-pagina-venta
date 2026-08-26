@@ -252,7 +252,7 @@
 </header>
 
 <div class="wrap">
-  <div class="card" style="border:1.5px solid var(--dorado);">
+  <div class="card" id="regalosCard" style="border:1.5px solid var(--dorado);display:none;">
     <div class="eyebrow">Ya son tuyos</div>
     <h2 style="margin-bottom:6px;">Tus 3 regalos</h2>
     <p style="margin-bottom:6px;">Antes de arrancar, descargate estos tres contenidos de PECOL. Quedan guardados en tu celular para siempre.</p>
@@ -536,15 +536,15 @@ const P2_OPTS = [
   {letra:"D", txt:"La emoción del momento: cuando llego o alguien llega a casa, empieza el juego"}
 ];
 const P3_OPTS = [
-  {letra:"A", txt:"Nada todavía / evitar irme, o probé un consejo de un conocido que a mí no me funcionó"},
+  {letra:"A", txt:"No hice nada todavía, evité irme, o probé un consejo de algún conocido que no me funcionó"},
   {letra:"B", txt:"Retarlo, decirle \"basta\", intentar que se calme cuando pasa el estímulo"},
   {letra:"C", txt:"Darle más juguetes o paseos más largos para que se canse, pero sigue igual"},
   {letra:"D", txt:"Ignorarlo hasta que se calme, pero sigue ladrando igual en cada visita"}
 ];
 const P4_OPTS = [
-  {letra:"E", txt:"Hace poco (semanas): antes no lo hacía o recién lo adoptaste"},
+  {letra:"E", txt:"Hace poco (semanas): antes no lo hacía o recién lo adopté"},
   {letra:"F", txt:"Hace varios meses"},
-  {letra:"G", txt:"Desde siempre / desde que lo tenés"}
+  {letra:"G", txt:"Desde siempre / desde que lo tengo"}
 ];
 const LETTER_TO_TYPE = {A:"ansiedad", B:"territorial", C:"aburrimiento", D:"excitacion"};
 
@@ -613,9 +613,10 @@ function el(html){ const d=document.createElement("div"); d.innerHTML=html; retu
 function screenWelcome(){
   return `
     <div class="card">
-      <div class="eyebrow">Descifrador de Ladridos</div>
+      <div class="eyebrow">Bienvenido al Descifrador de Ladridos</div>
       <h2>Vamos a entender por qué ladra tu perro.</h2>
-      <p>Son 4 preguntas simples. En cada una vas a elegir una sola opción: la que más se repite con tu perro. Al final vas a saber exactamente qué tipo de ladrido tiene y qué ruta de 7 días le corresponde.</p>
+      <p>Son 4 preguntas simples y sin costo. En cada una vas a elegir una sola opción: la que más se repite con tu perro. Al final vas a saber exactamente qué tipo de ladrido tiene.</p>
+      <p>Ahí vas a poder desbloquear la ruta completa de 7 días para resolverlo, con 3 regalos de PECOL incluidos.</p>
       <button class="btn" onclick="go('form')">Empezar</button>
     </div>
   `;
@@ -728,11 +729,11 @@ function screenDiagnosis(){
     : `
       <div class="card" style="border:1.5px solid var(--dorado);">
         <div class="eyebrow">Tu protocolo de 7 días</div>
-        <h2 style="font-size:19px;">Ya sabemos por qué ladra ${nombre}. Ahora viene la parte que lo soluciona.</h2>
-        <p>Este diagnóstico es gratis. La ruta de 7 días con los ejercicios exactos para ${nombre}, ya teniendo en cuenta todo lo que nos contaste, se desbloquea con tu compra.</p>
+        <h2 style="font-size:19px;">Ya sabés por qué ladra ${nombre}. Ahora viene la parte que lo soluciona.</h2>
+        <p>Este diagnóstico es gratis. La ruta de 7 días con los ejercicios exactos para ${nombre}, ya teniendo en cuenta tus respuestas, se desbloquea con tu compra — junto con 3 regalos extra de PECOL.</p>
         <p style="font-family:'Poppins',sans-serif;font-weight:800;color:var(--verde-oscuro);font-size:20px;margin-bottom:4px;">${PRECIO_TEXTO} <span style="font-weight:600;font-size:13.5px;color:var(--texto-suave);">pago único</span></p>
         <a class="btn" href="${MP_LINK}">Quiero el protocolo completo de ${nombre}</a>
-        <p style="font-size:12.5px;color:var(--texto-suave);margin-top:10px;margin-bottom:0;">Pagás con Mercado Pago y volvés directo acá, con tu protocolo ya desbloqueado.</p>
+        <p style="font-size:12.5px;color:var(--texto-suave);margin-top:10px;margin-bottom:0;">Pagás con Mercado Pago y volvés directo acá, con todo ya desbloqueado.</p>
       </div>
     `;
 
@@ -821,8 +822,14 @@ function screenChecklist(){
 }
 
 /* ============ RENDER ROOT ============ */
+function renderRegalos(){
+  const card = document.getElementById("regalosCard");
+  if(card){ card.style.display = state.paid ? "block" : "none"; }
+}
+
 function render(){
   renderProgress();
+  renderRegalos();
   let html = "";
   switch(state.screen){
     case "welcome": html = screenWelcome(); break;
